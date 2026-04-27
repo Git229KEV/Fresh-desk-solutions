@@ -1,0 +1,127 @@
+/* Fonts should be inherited from index.css, ensuring Playfair Display for headings if imported */
+
+.info-section {
+    padding: 120px 0;
+    background-color: #ffffff;
+    color: #333;
+    border-bottom: 1px solid #eee;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.info-header {
+    margin-bottom: 100px;
+    text-align: left;
+}
+
+.section-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 400;
+    margin-bottom: 20px;
+    color: #0b2545;
+    letter-spacing: -0.5px;
+}
+
+.section-subtext {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    color: #666;
+    max-width: 600px;
+    font-weight: 300;
+}
+
+/* Grid Layout */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 60px;
+    margin-bottom: 120px;
+}
+
+.info-item {
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+    transition: all 0.3s ease;
+}
+
+.info-item:hover {
+    border-top-color: #0b2545;
+}
+
+.info-number {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    color: #cbd5e1;
+    /* Light gray-blue */
+    margin-bottom: 15px;
+}
+
+.info-item h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #0b2545;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.info-item p {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.8;
+    color: #555;
+}
+
+/* Values Section */
+.values-wrapper {
+    background-color: #f8f9fa;
+    padding: 80px;
+    border-radius: 4px;
+    /* Slight rounding, not pill */
+}
+
+.small-heading {
+    font-size: 32px;
+    margin-bottom: 40px;
+}
+
+.values-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.value-point h5 {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #0b2545;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.value-point p {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+
+    .info-grid,
+    .values-list {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .values-wrapper {
+        padding: 40px;
+    }
+}

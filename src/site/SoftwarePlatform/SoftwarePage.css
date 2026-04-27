@@ -1,0 +1,231 @@
+.software-page {
+    background: #f8fafc;
+    min-height: 100vh;
+    padding-bottom: 80px;
+}
+
+.sw-hero {
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+/* Fallback colors if images aren't provided yet */
+.asset-bg { background-color: #0f172a; }
+.maintenance-bg { background-color: #003366; }
+
+.sw-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(15, 23, 42, 0.8) 0%, rgba(15, 23, 42, 0.3) 100%);
+    display: flex;
+    align-items: center;
+}
+
+.sw-hero h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+
+.sw-hero p {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    max-width: 600px;
+}
+
+.sw-features, .sw-process, .sw-maintenance {
+    position: relative;
+    z-index: 10;
+    padding: 80px 0;
+}
+
+.sw-section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-title {
+    font-size: 2.8rem;
+    color: #0f172a !important;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    background: transparent !important;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: #0056b3;
+    margin: 15px auto 0;
+}
+
+.features-grid, .process-grid, .maintenance-grid {
+    display: grid;
+    margin-top: 0;
+}
+
+.features-grid, .process-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.sw-feature-card, .process-card {
+    background: white;
+    padding: 40px;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border: 1px solid #e2e8f0;
+}
+
+.sw-feature-card:hover, .process-card:hover {
+    transform: translateY(-10px);
+    border-color: #0056b3;
+    box-shadow: 0 20px 40px rgba(0, 86, 179, 0.1);
+}
+
+.sw-icon-box, .process-icon-box {
+    width: 60px;
+    height: 60px;
+    background: #f0f7ff;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0056b3;
+    margin-bottom: 1.5rem;
+}
+
+.sw-feature-card h3, .process-card h3 {
+    font-size: 1.4rem;
+    color: #0f172a;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.sw-feature-card p, .process-card p {
+    color: #64748b;
+    line-height: 1.6;
+}
+
+/* Advanced Section */
+.sw-advanced {
+    padding: 80px 0;
+}
+
+.advanced-container {
+    background: white;
+    border-radius: 30px;
+    padding: 60px;
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.05);
+    border: 1px solid #e2e8f0;
+}
+
+.advanced-header h2 {
+    font-size: 2.2rem;
+    color: #0f172a;
+    margin-bottom: 3rem;
+    text-align: center;
+    font-weight: 800;
+}
+
+.advanced-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+}
+
+.advanced-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.advanced-icon {
+    color: #0056b3;
+    margin-top: 5px;
+}
+
+.advanced-text h4 {
+    font-size: 1.2rem;
+    color: #0f172a;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.advanced-text p {
+    color: #64748b;
+    line-height: 1.5;
+}
+
+/* Maintenance Grid */
+.maintenance-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+}
+
+.maintenance-task-card {
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    border: 1px solid #f1f5f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+    transition: all 0.3s;
+}
+
+.maintenance-task-card:hover {
+    transform: scale(1.02);
+    border-color: #0056b3;
+    box-shadow: 0 10px 20px rgba(15, 23, 42, 0.05);
+}
+
+.task-icon-box {
+    width: 50px;
+    height: 50px;
+    background: #f0f7ff;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0056b3;
+    flex-shrink: 0;
+}
+
+.task-content h3 {
+    font-size: 1.1rem;
+    color: #0f172a;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.task-content p {
+    font-size: 0.95rem;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+    .advanced-container {
+        padding: 30px;
+    }
+    .maintenance-grid {
+        grid-template-columns: 1fr;
+    }
+}

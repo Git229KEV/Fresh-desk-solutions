@@ -1,0 +1,273 @@
+/* About Us V2 Styling */
+.about-v2-page {
+    font-family: 'Outfit', 'Inter', sans-serif;
+    color: #334155;
+    background-color: #f8fafc;
+}
+
+/* Hero Section */
+.about-v2-hero {
+    position: relative;
+    height: 70vh;
+    min-height: 500px;
+    overflow: hidden;
+}
+
+.about-v2-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    transform: scale(1.05);
+    /* Slight zoom for effect */
+}
+
+.about-v2-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.4) 100%);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+}
+
+.hero-v2-content {
+    max-width: 800px;
+    padding-left: 20px;
+    border-left: 4px solid var(--primary-blue, #3b82f6);
+}
+
+.hero-v2-tag {
+    display: inline-block;
+    color: #60a5fa;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.hero-v2-title {
+    font-size: 4rem;
+    font-weight: 800;
+    color: white;
+    line-height: 1.1;
+    margin-bottom: 25px;
+}
+
+.hero-v2-subtitle {
+    font-size: 1.3rem;
+    color: #cbd5e1;
+    font-weight: 300;
+    max-width: 600px;
+}
+
+/* Vision Section */
+.about-v2-vision {
+    padding: 100px 0;
+    background: white;
+}
+
+.vision-grid {
+    display: grid;
+    grid-template-columns: 1fr 0.8fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.section-v2-heading {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.section-v2-text {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #475569;
+    margin-bottom: 25px;
+    font-weight: 400;
+}
+
+.highlight-text {
+    color: var(--primary-blue, #2563eb);
+    font-weight: 600;
+}
+
+.visual-card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+}
+
+.vision-img {
+    width: 100%;
+    display: block;
+    border-radius: 20px;
+    transition: transform 0.5s ease;
+}
+
+.visual-card:hover .vision-img {
+    transform: scale(1.03);
+}
+
+.visual-card-badge {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    background: white;
+    padding: 20px 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary-blue, #2563eb);
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #64748b;
+    text-transform: uppercase;
+}
+
+/* Why Choose Us */
+.about-v2-why {
+    padding: 100px 0;
+    background: #0f172a;
+    color: white;
+}
+
+.why-header {
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+.section-v2-heading-light {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+.section-v2-subheading-light {
+    font-size: 1.2rem;
+    color: #94a3b8;
+}
+
+.differentiators-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.diff-card {
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    border-radius: 16px;
+    transition: all 0.3s ease;
+}
+
+.diff-card:hover {
+    background: #1e293b;
+    transform: translateY(-5px);
+    border-color: #3b82f6;
+}
+
+.diff-number {
+    font-size: 3rem;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.1);
+    margin-bottom: 20px;
+    line-height: 1;
+}
+
+.diff-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #60a5fa;
+}
+
+.diff-desc {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #cbd5e1;
+}
+
+/* Values Ribbon */
+.about-v2-values {
+    background: var(--primary-blue, #2563eb);
+    padding: 40px 0;
+}
+
+.values-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.value-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: white;
+}
+
+.value-icon {
+    font-size: 1.5rem;
+}
+
+.value-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.values-divider {
+    width: 6px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+}
+
+/* Responsiveness */
+@media (max-width: 992px) {
+    .vision-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .differentiators-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-v2-title {
+        font-size: 3rem;
+    }
+
+    .values-flex {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .values-divider {
+        display: none;
+    }
+}

@@ -1,0 +1,272 @@
+/* Target Page Styles */
+.target-page {
+    width: 100%;
+    overflow-x: hidden;
+    padding-bottom: 0;
+    background-color: #f8f9fa;
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.target-page::-webkit-scrollbar {
+    display: none;
+}
+
+/* Reusing Hero styles from SolutionPage - copied to ensure independence or consistent override */
+.target-hero {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    /* Match SolutionPage hero height */
+    margin-bottom: 0;
+    /* Removing margin to connect directly with content if needed, or keep for spacing */
+}
+
+.target-hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    /* Dark overlay for text readability */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-title {
+    color: white;
+    font-size: 3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+/* Intro Content */
+.target-intro {
+    max-width: 1000px;
+    margin: 0 auto;
+    /* Remove vertical margin, handle via padding/height */
+    padding: 0 2rem;
+    text-align: center;
+    min-height: 200px;
+    /* Fixed height to ensure consistent start for columns below */
+    display: flex;
+    align-items: center;
+    /* Center text vertically */
+    justify-content: center;
+}
+
+.target-intro p {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: #444;
+}
+
+/* Main Columns Section */
+.target-columns-container {
+    display: flex;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    /* Make equal height columns */
+    align-items: stretch;
+}
+
+.target-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    position: relative;
+    /* Basic Transition */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    /* Subtle divider if colored, or rely on distinct backgrounds */
+}
+
+.target-column:last-child {
+    border-right: none;
+}
+
+/* Distinct Column Backgrounds - Gradient Blue Palette based on image */
+.target-column:nth-child(1) {
+    background-color: #00AEEF;
+    /* Cyan Blue */
+    color: white;
+}
+
+.target-column:nth-child(2) {
+    background-color: #0077B6;
+    /* Medium Blue */
+    color: white;
+}
+
+.target-column:nth-child(3) {
+    background-color: #023E8A;
+    /* Darker Blue */
+    color: white;
+}
+
+.target-column:nth-child(4) {
+    background-color: #03045E;
+    /* Deep Navy */
+    color: white;
+}
+
+/* Column Header Area */
+.column-header {
+    padding: 40px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-height: 180px;
+}
+
+.column-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+}
+
+.column-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+/* Divider Line */
+.column-divider {
+    width: 80%;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.3);
+    margin: 10px auto 30px;
+}
+
+/* Column Content Area */
+.column-content {
+    flex: 1;
+    /* Pushes footer down */
+    padding: 0 30px 40px;
+    text-align: center;
+}
+
+.column-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+/* Use a feature-list style for the description to match the image's "list" look, even if it's just text for now */
+.feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    /* Align left for readability like a list */
+}
+
+.feature-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+    padding-left: 10px;
+    /* Slight indent for better alignment in the column */
+}
+
+.feature-icon {
+    margin-right: 10px;
+    color: #fff;
+    /* White checks/crosses */
+    font-weight: bold;
+}
+
+/* Column Footer / Action Button */
+
+
+/* Hover Effect for Columns */
+.target-column:hover {
+    z-index: 10;
+    transform: scale(1.02);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .target-columns-container {
+        flex-wrap: wrap;
+    }
+
+    .target-column {
+        flex: 1 1 50%;
+    }
+}
+
+@media (max-width: 768px) {
+    .target-hero {
+        height: 250px;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+        padding: 0 15px;
+    }
+
+    .target-intro {
+        padding: 30px 15px;
+        min-height: auto;
+    }
+
+    .target-intro p {
+        font-size: 1.1rem;
+    }
+
+    .column-header {
+        min-height: auto;
+        padding: 30px 20px 10px;
+    }
+
+    .column-content {
+        padding: 0 20px 30px;
+    }
+}
+
+@media (max-width: 600px) {
+    .target-columns-container {
+        flex-direction: column;
+    }
+
+    .target-column {
+        flex: 1 1 100%;
+        margin-bottom: 0;
+    }
+
+    .hero-title {
+        font-size: 1.5rem;
+    }
+}

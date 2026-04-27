@@ -1,0 +1,243 @@
+.material-coding-page {
+    background-color: #f8fafc;
+    min-height: 100vh;
+    padding-bottom: 80px;
+}
+
+/* Hero Section */
+.mc-hero {
+    height: 450px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.mc-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(15, 23, 42, 0.7) 0%, rgba(15, 23, 42, 0.2) 100%);
+    display: flex;
+    align-items: center;
+}
+
+.mc-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    letter-spacing: -1px;
+}
+
+.mc-subtitle {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    max-width: 600px;
+    line-height: 1.5;
+}
+
+/* Intro Section */
+.mc-intro-section {
+    margin-top: -60px;
+    position: relative;
+    z-index: 10;
+}
+
+.mc-card {
+    background: white;
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+}
+
+.intro-card h2 {
+    color: #0f172a;
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.intro-card p {
+    color: #475569;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+}
+
+.mc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.mc-feature {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px;
+    background: #f8fafc;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+    border: 1px solid #e2e8f0;
+}
+
+.mc-feature:hover {
+    transform: translateY(-3px);
+    border-color: #0056b3;
+    background: white;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.feature-icon {
+    color: #0056b3;
+    flex-shrink: 0;
+}
+
+.mc-feature p {
+    margin: 0;
+    font-size: 1rem;
+    color: #334155;
+    font-weight: 500;
+}
+
+/* Value Section */
+.mc-value-section {
+    padding: 80px 0;
+}
+
+.mc-value-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+}
+
+.mc-value-card {
+    background: white;
+    padding: 45px;
+    border-radius: 24px;
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.mc-value-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.1);
+    border-color: #0056b3;
+}
+
+.mc-value-card.highlight {
+    background: #0056b3;
+    color: white;
+    border-color: #0056b3;
+}
+
+.mc-value-card.highlight h3,
+.mc-value-card.highlight p {
+    color: white;
+}
+
+.value-icon-box {
+    width: 64px;
+    height: 64px;
+    background: #f0f7ff;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    color: #0056b3;
+}
+
+.mc-value-card.highlight .value-icon-box {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.mc-value-card h3 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    color: #0f172a;
+}
+
+.mc-value-card p {
+    color: #64748b;
+    line-height: 1.7;
+    font-size: 1.05rem;
+}
+
+/* Masters Section */
+.mc-masters-section {
+    padding: 40px 0;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.8rem;
+    color: #0f172a;
+    margin-bottom: 1rem;
+    font-weight: 800;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: #64748b;
+    margin-bottom: 4rem;
+    font-size: 1.15rem;
+}
+
+.masters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.master-card {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.master-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(15, 23, 42, 0.08);
+    border-color: #0056b3;
+}
+
+.master-icon {
+    font-size: 1.5rem;
+    background: #f0f7ff;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    color: #0056b3;
+    flex-shrink: 0;
+}
+
+.master-card h3 {
+    font-size: 1.1rem;
+    color: #1e293b;
+    font-weight: 600;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .mc-title {
+        font-size: 2.5rem;
+    }
+    .mc-card {
+        padding: 30px;
+    }
+}

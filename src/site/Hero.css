@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+.hero-section {
+    position: relative;
+    width: 100%;
+    min-height: 500px;
+    overflow: hidden;
+    background: #f0f0f0;
+}
+
+.hero-bg-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.hero-bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Position it to the right mostly */
+    object-position: right center;
+}
+
+.hero-overlay-shapes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* This gradient attempts to recreate the angular blue overlays */
+    background:
+        linear-gradient(115deg, var(--primary-blue) 0%, var(--primary-blue) 45%, transparent 45.1%),
+        linear-gradient(115deg, rgba(0, 86, 179, 0.8) 0%, rgba(0, 86, 179, 0.2) 65%, transparent 65%);
+
+    /* Advanced: Using clip-path for sharper angles if needed, but gradient is easier for full coverage */
+}
+
+/* To get the specific intersecting translucent shapes, we might need pseudo elements */
+.hero-overlay-shapes::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(65deg, rgba(255, 255, 255, 0.1) 30%, transparent 30%);
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 500px;
+    /* Match section min-height or use 100vh check */
+    padding-top: 50px;
+}
+
+
+
+
+
+
+
+.hero-text-block {
+    color: white;
+    max-width: 900px;
+    opacity: 0;
+    margin: 0;
+    text-align: left;
+    animation: slideInLeft 1s ease-out forwards;
+}
+
+.hero-text-block h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 80px;
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 0;
+    text-transform: none;
+    letter-spacing: -1px;
+}
+
+@media (max-width: 1200px) {
+    .hero-text-block h1 {
+        font-size: 60px;
+    }
+}
+
+@media (max-width: 992px) {
+    .hero-content {
+        height: auto;
+        min-height: 400px;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        padding: 60px 20px;
+    }
+
+    .hero-text-block {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .hero-text-block h1 {
+        font-size: 45px;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero-section {
+        min-height: 400px;
+    }
+
+    .hero-text-block h1 {
+        font-size: 36px;
+    }
+
+    .hero-overlay-shapes {
+        background: linear-gradient(180deg, rgba(0, 86, 179, 0.9) 0%, rgba(0, 86, 179, 0.6) 100%);
+    }
+}
+
+.hero-stats-block {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px 30px;
+    border-left: 5px solid var(--secondary-blue);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    /* Position roughly right-center */
+    margin-right: 50px;
+    /* Adjust as needed */
+    color: var(--dark-blue);
+    min-width: 300px;
+    opacity: 0;
+    /* Start invisible */
+    animation: slideInRight 1s ease-out forwards;
+}
+
+.hero-stats-block h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    font-weight: 700;
+    color: var(--dark-blue);
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--secondary-blue);
+    padding-bottom: 5px;
+    display: inline-block;
+}
+
+.why-choose-us-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.why-choose-us-list li {
+    margin-bottom: 12px;
+    font-size: 16px;
+    line-height: 1.4;
+    color: #444;
+}
+
+.why-choose-us-list li strong {
+    color: var(--primary-blue);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 2px;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
