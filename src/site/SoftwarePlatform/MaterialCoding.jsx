@@ -390,13 +390,13 @@ const MaterialCoding = () => {
                         <svg className="mc-flowchart-svg" viewBox="0 0 1000 600" width="1000" height="600">
                             <defs>
                                 <marker id="arr-dim" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto">
-                                    <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="rgba(139,92,246,0.2)" />
+                                    <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="rgba(0,86,179,0.25)" />
                                 </marker>
                                 <marker id="arr-orange" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto">
-                                    <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#ff5500" />
+                                    <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#0056B3" />
                                 </marker>
                                 <filter id="orange-glow">
-                                    <feGaussianBlur stdDeviation="2.5" result="blur" />
+                                    <feGaussianBlur stdDeviation="3" result="blur" />
                                     <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
                                 </filter>
                             </defs>
@@ -408,7 +408,7 @@ const MaterialCoding = () => {
                                     <path
                                         key={`base-${key}`}
                                         d={conn.path}
-                                        stroke="rgba(139,92,246,0.18)"
+                                        stroke="rgba(0,86,179,0.2)"
                                         strokeWidth="1.5"
                                         strokeDasharray="4 4"
                                         fill="none"
@@ -418,7 +418,7 @@ const MaterialCoding = () => {
                                 );
                             })}
 
-                            {/* Active Orange Connections */}
+                            {/* Active Blue Connections */}
                             {Object.entries(connectionsData).map(([key, conn]) => {
                                 const isLinkActive = paths[activePath].connections.includes(key);
                                 if (!isLinkActive) return null;
@@ -427,17 +427,17 @@ const MaterialCoding = () => {
                                         {/* Outer glow */}
                                         <path
                                             d={conn.path}
-                                            stroke="#ff3300"
-                                            strokeWidth="5"
+                                            stroke="#0077dd"
+                                            strokeWidth="6"
                                             fill="none"
-                                            opacity="0.2"
+                                            opacity="0.18"
                                             filter="url(#orange-glow)"
                                         />
-                                        {/* Core dashed orange line */}
+                                        {/* Core dashed blue line */}
                                         <path
                                             d={conn.path}
                                             className="connection-line-flow"
-                                            stroke="#ff5500"
+                                            stroke="#0056B3"
                                             strokeWidth="2"
                                             fill="none"
                                             markerEnd="url(#arr-orange)"
