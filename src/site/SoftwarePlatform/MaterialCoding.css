@@ -243,26 +243,25 @@
 }
 
 /* ================================================================
-   WORKFLOW SECTION — Brand Theme: #252C3B + #0056B3 + White
+   WORKFLOW SECTION — White Background, #0056B3 + #252C3B Accents
    ================================================================ */
 .mc-workflow-section {
     padding: 80px 0;
-    background: #252C3B;
-    border-top: none;
-    border-bottom: none;
+    background: #ffffff;
+    border-top: 1px solid #e8eef6;
+    border-bottom: 1px solid #e8eef6;
     position: relative;
     overflow: hidden;
 }
 
-/* Subtle grid overlay in brand blue */
+/* Very subtle dot-grid background in blue on white */
 .mc-workflow-section::before {
     content: '';
     position: absolute;
     inset: 0;
     background-image:
-        linear-gradient(rgba(0, 86, 179, 0.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 86, 179, 0.08) 1px, transparent 1px);
-    background-size: 40px 40px;
+        radial-gradient(circle, rgba(0, 86, 179, 0.07) 1px, transparent 1px);
+    background-size: 36px 36px;
     pointer-events: none;
     z-index: 0;
 }
@@ -272,12 +271,13 @@
     z-index: 1;
 }
 
+/* Section headings use brand dark */
 .mc-workflow-section .section-title {
-    color: #ffffff;
+    color: #252C3B;
 }
 
 .mc-workflow-section .section-subtitle {
-    color: rgba(180, 200, 230, 0.75);
+    color: #64748b;
     margin-bottom: 2.5rem;
 }
 
@@ -296,42 +296,42 @@
     gap: 8px;
     padding: 10px 22px;
     border-radius: 30px;
-    border: 1px solid rgba(0, 86, 179, 0.35);
-    background: rgba(255, 255, 255, 0.05);
-    color: rgba(180, 210, 255, 0.75);
+    border: 1.5px solid #d1dff5;
+    background: #ffffff;
+    color: #475569;
     font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    backdrop-filter: blur(4px);
+    box-shadow: 0 2px 6px rgba(0, 86, 179, 0.06);
 }
 
 .path-tab:hover {
-    background: rgba(0, 86, 179, 0.18);
-    border-color: rgba(0, 86, 179, 0.6);
-    color: #ffffff;
+    background: #f0f6ff;
+    border-color: #0056B3;
+    color: #0056B3;
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0, 86, 179, 0.2);
+    box-shadow: 0 6px 16px rgba(0, 86, 179, 0.12);
 }
 
 .path-tab.active {
-    color: white;
+    color: #ffffff;
     border-color: transparent;
 }
 
 .path-tab.standard-tab.active {
     background: #0056B3;
-    box-shadow: 0 8px 20px rgba(0, 86, 179, 0.45);
+    box-shadow: 0 8px 20px rgba(0, 86, 179, 0.35);
 }
 
 .path-tab.exceptions-tab.active {
     background: linear-gradient(135deg, #0056B3, #0077cc);
-    box-shadow: 0 8px 20px rgba(0, 86, 179, 0.4);
+    box-shadow: 0 8px 20px rgba(0, 86, 179, 0.3);
 }
 
 .path-tab.feedback-tab.active {
-    background: linear-gradient(135deg, #1a3d6b, #0056B3);
-    box-shadow: 0 8px 20px rgba(0, 86, 179, 0.35);
+    background: linear-gradient(135deg, #252C3B, #0056B3);
+    box-shadow: 0 8px 20px rgba(37, 44, 59, 0.3);
 }
 
 /* Path Info Bar */
@@ -340,10 +340,9 @@
     max-width: 760px;
     margin: 0 auto 2rem auto;
     padding: 1.25rem 2rem;
-    background: rgba(0, 86, 179, 0.08);
+    background: #f0f6ff;
     border-radius: 16px;
-    border: 1px solid rgba(0, 86, 179, 0.25);
-    backdrop-filter: blur(6px);
+    border: 1px solid #d1dff5;
     transition: all 0.3s ease;
 }
 
@@ -353,13 +352,13 @@
     margin-bottom: 0.4rem;
 }
 
-.path-title.color-blue   { color: #5badff; }
-.path-title.color-purple { color: #7ec8ff; }
-.path-title.color-yellow { color: #93c5fd; }
+.path-title.color-blue   { color: #0056B3; }
+.path-title.color-purple { color: #0056B3; }
+.path-title.color-yellow { color: #252C3B; }
 
 .path-description {
     font-size: 0.95rem;
-    color: rgba(180, 210, 255, 0.7);
+    color: #475569;
     line-height: 1.6;
     margin: 0;
 }
@@ -377,24 +376,24 @@
     position: relative;
     width: 1000px;
     height: 600px;
-    background: radial-gradient(ellipse at 25% 35%, #1e2d45 0%, #1a2232 60%, #151c2b 100%);
+    /* Light blue-tinted canvas — stands out from white section bg */
+    background: #f4f8ff;
     border-radius: 24px;
-    border: 1px solid rgba(0, 86, 179, 0.3);
+    border: 1.5px solid #d1dff5;
     box-shadow:
-        0 0 0 1px rgba(0, 86, 179, 0.12),
-        0 20px 60px rgba(0, 0, 0, 0.5),
-        inset 0 0 80px rgba(0, 0, 0, 0.3);
+        0 4px 6px rgba(0, 86, 179, 0.06),
+        0 20px 50px rgba(0, 86, 179, 0.08);
     overflow: hidden;
 }
 
-/* Grid lines inside canvas */
+/* Subtle grid lines inside canvas */
 .mc-flowchart-canvas::before {
     content: '';
     position: absolute;
     inset: 0;
     background-image:
-        linear-gradient(rgba(0, 86, 179, 0.07) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 86, 179, 0.07) 1px, transparent 1px);
+        linear-gradient(rgba(0, 86, 179, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 86, 179, 0.06) 1px, transparent 1px);
     background-size: 50px 50px;
     pointer-events: none;
     z-index: 0;
@@ -405,7 +404,7 @@
     position: absolute;
     top: 0;
     bottom: 0;
-    border-right: 1px dashed rgba(0, 86, 179, 0.18);
+    border-right: 1px dashed rgba(0, 86, 179, 0.15);
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -420,13 +419,13 @@
     font-size: 9px;
     font-weight: 800;
     letter-spacing: 2.5px;
-    color: rgba(0, 120, 255, 0.35);
+    color: rgba(0, 86, 179, 0.3);
     text-transform: uppercase;
 }
 
-.swimlane-label.lane-intake          { background: rgba(0, 86, 179, 0.04); }
-.swimlane-label.lane-standardization { background: rgba(0, 86, 179, 0.03); }
-.swimlane-label.lane-qa              { background: rgba(0, 86, 179, 0.05); }
+.swimlane-label.lane-intake          { background: rgba(0, 86, 179, 0.025); }
+.swimlane-label.lane-standardization { background: rgba(0, 86, 179, 0.015); }
+.swimlane-label.lane-qa              { background: rgba(0, 86, 179, 0.03); }
 
 /* SVG connector overlay */
 .mc-flowchart-svg {
@@ -450,13 +449,13 @@
     to { stroke-dashoffset: -1000; }
 }
 
-/* ── Junction Dots — brand blue ── */
+/* ── Junction Dots — #0056B3 blue ── */
 .junction-dot {
     fill: #0056B3;
-    filter: drop-shadow(0 0 5px rgba(0, 86, 179, 0.9));
+    filter: drop-shadow(0 0 4px rgba(0, 86, 179, 0.6));
 }
 
-/* ── Flow Nodes (white cards) ── */
+/* ── Flow Nodes (white cards on light canvas) ── */
 .flow-node {
     position: absolute;
     display: flex;
@@ -468,30 +467,30 @@
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     background: #ffffff;
-    border: 2px solid rgba(255, 255, 255, 0.9);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+    border: 1.5px solid #d1dff5;
+    box-shadow: 0 4px 12px rgba(0, 86, 179, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
 .flow-node:hover {
     transform: translateY(-4px) scale(1.02);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 22px rgba(0, 86, 179, 0.35);
     border-color: #0056B3;
+    box-shadow: 0 10px 24px rgba(0, 86, 179, 0.18), 0 2px 6px rgba(0, 0, 0, 0.06);
 }
 
 .flow-node.selected {
     transform: translateY(-4px) scale(1.03);
     border-color: #0056B3;
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55), 0 0 30px rgba(0, 86, 179, 0.4);
+    box-shadow: 0 14px 30px rgba(0, 86, 179, 0.22), 0 0 0 3px rgba(0, 86, 179, 0.12);
     z-index: 10;
 }
 
 .flow-node.out-of-path {
-    opacity: 0.18;
-    filter: saturate(0.1);
+    opacity: 0.3;
+    filter: saturate(0.15) grayscale(0.5);
 }
 
 .flow-node.out-of-path:hover {
-    opacity: 0.6;
+    opacity: 0.7;
     filter: none;
 }
 
@@ -534,60 +533,59 @@
     width: 13px;
     height: 13px;
     border-radius: 50%;
-    border: 2px solid #1a2232;
+    border: 2px solid #f4f8ff;
     z-index: 6;
-    box-shadow: 0 0 8px rgba(0, 86, 179, 0.8);
+    box-shadow: 0 0 8px rgba(0, 86, 179, 0.5);
     background-color: #0056B3;
 }
 
-/* ── Node color variants — all use brand blue accent ── */
-.flow-node.peach { background: #ffffff; border-color: rgba(0, 86, 179, 0.25); }
+/* ── Node color variants — all blue-tinted on white ── */
+.flow-node.peach { background: #ffffff; border-color: #d1dff5; }
 .flow-node.peach .flow-node-icon { background: #e8f0fb; color: #0056B3; }
 .flow-node.peach .flow-node-lane { color: #0056B3; }
 .flow-node.peach.selected { border-color: #0056B3; }
 
-.flow-node.blue { background: #ffffff; border-color: rgba(0, 86, 179, 0.3); }
+.flow-node.blue { background: #ffffff; border-color: #bfdbfe; }
 .flow-node.blue .flow-node-icon { background: #dbeafe; color: #0056B3; }
 .flow-node.blue .flow-node-lane { color: #0056B3; }
 .flow-node.blue.selected { border-color: #0056B3; }
 
-.flow-node.green { background: #f0f6ff; border-color: rgba(0, 86, 179, 0.35); }
+.flow-node.green { background: #f0f6ff; border-color: #bfdbfe; }
 .flow-node.green .flow-node-icon { background: #bfdbfe; color: #1d4ed8; }
 .flow-node.green .flow-node-lane { color: #1d4ed8; }
 .flow-node.green.selected { border-color: #0056B3; }
 
-.flow-node.cyan { background: #ffffff; border-color: rgba(0, 86, 179, 0.25); }
+.flow-node.cyan { background: #ffffff; border-color: #d1dff5; }
 .flow-node.cyan .flow-node-icon { background: #e0f2fe; color: #0056B3; }
 .flow-node.cyan .flow-node-lane { color: #0369a1; }
 .flow-node.cyan.selected { border-color: #0056B3; }
 
-.flow-node.yellow { background: #ffffff; border-color: rgba(0, 86, 179, 0.2); }
+.flow-node.yellow { background: #ffffff; border-color: #d1dff5; }
 .flow-node.yellow .flow-node-icon { background: #eff6ff; color: #0056B3; }
 .flow-node.yellow .flow-node-lane { color: #0056B3; }
 .flow-node.yellow.selected { border-color: #0056B3; }
 
-.flow-node.pink { background: #ffffff; border-color: rgba(0, 86, 179, 0.2); }
+.flow-node.pink { background: #ffffff; border-color: #d1dff5; }
 .flow-node.pink .flow-node-icon { background: #e8f0fb; color: #0056B3; }
 .flow-node.pink .flow-node-lane { color: #0056B3; }
 .flow-node.pink.selected { border-color: #0056B3; }
 
-/* purple → brand blue dark card */
-.flow-node.purple { background: #0056B3; border-color: rgba(0, 86, 179, 0.8); }
+/* purple → solid #0056B3 card (accent card) */
+.flow-node.purple { background: #0056B3; border-color: #004494; }
 .flow-node.purple .flow-node-icon { background: rgba(255, 255, 255, 0.2); color: #ffffff; }
-.flow-node.purple .flow-node-lane { color: rgba(255, 255, 255, 0.75); }
+.flow-node.purple .flow-node-lane { color: rgba(255, 255, 255, 0.8); }
 .flow-node.purple .flow-node-content h4 { color: #ffffff; }
-.flow-node.purple.selected { border-color: #ffffff; box-shadow: 0 0 30px rgba(0, 86, 179, 0.7); }
+.flow-node.purple.selected { border-color: #252C3B; box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.2); }
 .flow-node.purple .active-dot-indicator { background-color: #ffffff; border-color: #0056B3; }
 
-/* ── Detail Panel ── */
+/* ── Detail Panel — white card with blue top border ── */
 .active-step-panel {
     margin-top: 2rem;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(0, 86, 179, 0.3);
+    background: #ffffff;
+    border: 1px solid #d1dff5;
     border-radius: 20px;
     padding: 28px 32px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px rgba(0, 86, 179, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04);
     transition: all 0.35s ease;
 }
 
@@ -612,21 +610,22 @@
     font-weight: 800;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    color: rgba(100, 160, 255, 0.6);
+    color: #0056B3;
     display: block;
     margin-bottom: 3px;
+    opacity: 0.7;
 }
 
 .active-step-header h3 {
     margin: 0;
     font-size: 1.35rem;
     font-weight: 700;
-    color: #ffffff;
+    color: #252C3B;
 }
 
 .active-step-description {
     margin: 0;
-    color: rgba(190, 215, 255, 0.85);
+    color: #475569;
     font-size: 1rem;
     line-height: 1.7;
 }
@@ -639,8 +638,8 @@
 .active-step-header.yellow .active-step-icon,
 .active-step-header.pink .active-step-icon,
 .active-step-header.purple .active-step-icon {
-    background: rgba(0, 86, 179, 0.2);
-    color: #5badff;
+    background: #e8f0fb;
+    color: #0056B3;
 }
 
 /* Details grid */
@@ -650,7 +649,7 @@
     gap: 1.75rem;
     margin-top: 1.25rem;
     padding-top: 1.25rem;
-    border-top: 1px solid rgba(0, 86, 179, 0.2);
+    border-top: 1px solid #e8eef6;
 }
 
 .details-col { display: flex; flex-direction: column; gap: 5px; }
@@ -658,14 +657,14 @@
 .details-label {
     font-size: 0.75rem;
     font-weight: 800;
-    color: rgba(100, 160, 255, 0.5);
+    color: #94a3b8;
     letter-spacing: 1px;
     text-transform: uppercase;
 }
 
 .details-val {
     font-size: 0.92rem;
-    color: rgba(210, 230, 255, 0.9);
+    color: #334155;
     font-weight: 500;
     line-height: 1.5;
 }
