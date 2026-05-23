@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './MaterialCoding.css';
 import heroImg from '../../assets/software/material_coding_hero.png';
 import {
@@ -15,10 +15,220 @@ import {
     CheckCircle2,
     Shuffle,
     Layers,
-    Activity
+    Activity,
+    HelpCircle,
+    Send,
+    ArrowRight,
+    CornerDownLeft,
+    Check
 } from 'lucide-react';
 
+const workflowSteps = [
+    {
+        id: 'collect',
+        title: 'Collect Existing Data',
+        lane: 'intake',
+        laneName: 'Intake & Exceptions',
+        color: 'peach',
+        icon: <Database size={20} />,
+        x: 132, y: 75,
+        width: 180, height: 60,
+        description: 'Gather raw, unstructured material records, legacy spreadsheets, manufacturer sheets, and inventory catalogs from all client sources.',
+        owner: 'Client & FDS Team',
+        inputs: 'Raw spreadsheets, ERP data dumps, manufacturer catalogs',
+        outputs: 'Consolidated Raw Data Inventory'
+    },
+    {
+        id: 'analyze',
+        title: 'Analyze Data',
+        lane: 'standardization',
+        laneName: 'Standardisation',
+        color: 'blue',
+        icon: <Activity size={20} />,
+        x: 432, y: 75,
+        width: 180, height: 60,
+        description: 'Audit the collected raw records to identify duplicates, format inconsistencies, obsolete parts, and cataloging gaps.',
+        owner: 'FDS Data Analysts',
+        inputs: 'Consolidated Raw Data Inventory',
+        outputs: 'Data Health Audit Report'
+    },
+    {
+        id: 'identify_class',
+        title: 'Identify Class Characteristics',
+        lane: 'standardization',
+        laneName: 'Standardisation',
+        color: 'blue',
+        icon: <Layers size={20} />,
+        x: 432, y: 200,
+        width: 220, height: 60,
+        description: 'Classify items under standard taxonomies (e.g., UNSPSC or custom schema) and define key attributes (nouns, modifiers, specifications).',
+        owner: 'Taxonomy Experts',
+        inputs: 'Audited Data Registry',
+        outputs: 'Noun & Modifier Dictionary, Key Attribute Templates'
+    },
+    {
+        id: 'freeze_templates',
+        title: 'Freezing Templates',
+        lane: 'standardization',
+        laneName: 'Standardisation',
+        color: 'blue',
+        icon: <CheckCircle2 size={20} />,
+        x: 432, y: 325,
+        width: 190, height: 60,
+        description: 'Review and lock down cataloging templates and mandatory attributes with the client team to establish strict entry rules.',
+        owner: 'FDS Team & Client Stakeholders',
+        inputs: 'Draft Attribute Templates',
+        outputs: 'Frozen Master Data Templates'
+    },
+    {
+        id: 'populate_values',
+        title: 'Populate Values',
+        lane: 'standardization',
+        laneName: 'Standardisation',
+        color: 'green',
+        icon: <Shuffle size={20} />,
+        x: 432, y: 460,
+        width: 180, height: 68,
+        description: 'Enrich and populate values into the frozen templates, standardizing units of measure, manufacturer names, and item specifications.',
+        owner: 'Cataloguing Engineers',
+        inputs: 'Source Records + Frozen Templates',
+        outputs: 'Draft Enriched Material Catalog'
+    },
+    {
+        id: 'submit_client_qa',
+        title: 'Submit to Client',
+        lane: 'qa',
+        laneName: 'Quality Assurance',
+        color: 'cyan',
+        icon: <FileText size={20} />,
+        x: 787, y: 200,
+        width: 160, height: 60,
+        description: 'Deliver the draft catalog database to the client stakeholders and domain experts for technical review and validation.',
+        owner: 'FDS Delivery Manager',
+        inputs: 'Draft Enriched Material Catalog',
+        outputs: 'Client Review Package'
+    },
+    {
+        id: 'suggestion_feedback',
+        title: 'Suggestion/Feedback',
+        lane: 'qa',
+        laneName: 'Quality Assurance',
+        color: 'yellow',
+        icon: <MessageSquare size={20} />,
+        x: 787, y: 340,
+        width: 180, height: 68,
+        description: 'Collect review markups, suggestions, and operational feedback from client maintenance, procurement, and warehouse teams.',
+        owner: 'Client Reviewers & FDS Coordinator',
+        inputs: 'Client Review Package',
+        outputs: 'Feedback Log (Revision list / Release approval)'
+    },
+    {
+        id: 'approval',
+        title: 'Approval',
+        lane: 'qa',
+        laneName: 'Quality Assurance',
+        color: 'pink',
+        icon: <CheckCircle2 size={20} />,
+        x: 787, y: 470,
+        width: 150, height: 60,
+        description: 'Final sign-off of the cleaned, standardized, and enriched material catalog, locking it for production database insertion.',
+        owner: 'Client Project Sponsor',
+        inputs: 'Approved Material Catalog',
+        outputs: 'Production-Ready ERP Database'
+    },
+    {
+        id: 'missing_info',
+        title: 'Identify Missing Info',
+        lane: 'intake',
+        laneName: 'Intake & Exceptions',
+        color: 'purple',
+        icon: <HelpCircle size={20} />,
+        x: 132, y: 291,
+        width: 180, height: 60,
+        description: 'Detect missing technical parameters, illegible manufacturer details, or incomplete records that block template compliance.',
+        owner: 'Cataloguing Engineers',
+        inputs: 'Partially Standardized Records',
+        outputs: 'Clarification Request Register'
+    },
+    {
+        id: 'submit_client_exception',
+        title: 'Submit to Client',
+        lane: 'intake',
+        laneName: 'Intake & Exceptions',
+        color: 'cyan',
+        icon: <Send size={20} />,
+        x: 132, y: 420,
+        width: 160, height: 60,
+        description: 'Send clarification request queries to the client to retrieve original equipment datasheets or physical details.',
+        owner: 'FDS Query Desk & Client Coordinator',
+        inputs: 'Clarification Request Register',
+        outputs: 'Resolved Material Specifications'
+    }
+];
+
+const connectionsData = {
+    collect_to_analyze: { path: 'M 222,75 L 332,75' },
+    analyze_to_identify_class: { path: 'M 432,105 L 432,170' },
+    identify_class_to_freeze_templates: { path: 'M 432,230 L 432,295' },
+    freeze_templates_to_populate_values: { path: 'M 432,355 L 432,420' },
+    populate_values_to_submit_client_qa: { path: 'M 522,460 L 650,460 L 650,200 L 707,200' },
+    submit_client_qa_to_suggestion_feedback: { path: 'M 787,230 L 787,300' },
+    suggestion_feedback_to_approval: { path: 'M 787,380 L 787,440' },
+    suggestion_feedback_to_populate_values: { path: 'M 697,340 L 590,340 L 590,460 L 522,460' },
+    identify_class_to_missing_info: { path: 'M 322,200 L 260,200 L 260,291 L 222,291' },
+    freeze_templates_to_missing_info: { path: 'M 332,325 L 260,325 L 260,291 L 222,291' },
+    missing_info_to_submit_client_exception: { path: 'M 132,321 L 132,390' },
+    submit_client_exception_to_populate_values: { path: 'M 212,420 L 280,420 L 280,460 L 342,460' }
+};
+
+const paths = {
+    standard: {
+        steps: ['collect', 'analyze', 'identify_class', 'freeze_templates', 'populate_values', 'submit_client_qa', 'suggestion_feedback', 'approval'],
+        connections: [
+            'collect_to_analyze',
+            'analyze_to_identify_class',
+            'identify_class_to_freeze_templates',
+            'freeze_templates_to_populate_values',
+            'populate_values_to_submit_client_qa',
+            'submit_client_qa_to_suggestion_feedback',
+            'suggestion_feedback_to_approval'
+        ],
+        title: 'Standard Cataloguing Flow',
+        description: 'The standard sequential flow for high-fidelity catalog consolidation. Data moves from collection, through classification and templating, to final approval.',
+        color: 'blue'
+    },
+    exceptions: {
+        steps: ['collect', 'analyze', 'identify_class', 'freeze_templates', 'missing_info', 'submit_client_exception', 'populate_values'],
+        connections: [
+            'collect_to_analyze',
+            'analyze_to_identify_class',
+            'identify_class_to_freeze_templates',
+            'identify_class_to_missing_info',
+            'freeze_templates_to_missing_info',
+            'missing_info_to_submit_client_exception',
+            'submit_client_exception_to_populate_values'
+        ],
+        title: 'Exception & Missing Info Flow',
+        description: 'The parallel path triggered when critical technical data is missing. The FDS team submits queries to the client and integrates answers to populate values.',
+        color: 'purple'
+    },
+    feedback: {
+        steps: ['populate_values', 'submit_client_qa', 'suggestion_feedback'],
+        connections: [
+            'populate_values_to_submit_client_qa',
+            'submit_client_qa_to_suggestion_feedback',
+            'suggestion_feedback_to_populate_values'
+        ],
+        title: 'Quality Review & Feedback Loop',
+        description: 'The iterative feedback loop. Once values are populated and submitted, client comments are incorporated to re-populate and refine catalog details.',
+        color: 'yellow'
+    }
+};
+
 const MaterialCoding = () => {
+    const [activePath, setActivePath] = useState('standard');
+    const [selectedStep, setSelectedStep] = useState('collect');
+    const [hoveredStep, setHoveredStep] = useState(null);
     const masters = [
         { title: "UOM Master", icon: <Ruler size={24} /> },
         { title: "Manufacturer/Vendor Master", icon: <Factory size={24} /> },
@@ -127,216 +337,222 @@ const MaterialCoding = () => {
                 </div>
             </section>
 
-            {/* ── Workflow SVG ── */}
+            {/* ── Interactive Workflow Section ── */}
             <section className="mc-workflow-section container">
                 <h2 className="section-title">Material Master-Work Flow</h2>
-                <p className="section-subtitle">Our structured, iterative process for building high-fidelity material catalogs</p>
+                <p className="section-subtitle">An interactive visual map of our structured, exception-tolerant cataloguing process. Select a path below to see how data flows.</p>
 
-                <div className="workflow-legend">
-                    <span className="legend-item legend-standard"><span className="legend-line dark"></span>Standard Flow</span>
-                    <span className="legend-item"><span className="legend-line orange"></span>Client / Exception</span>
-                    <span className="legend-item"><span className="legend-line green"></span>Approval / Loop</span>
-                    <span className="legend-item"><span className="legend-line blue dashed"></span>Iteration Feedback</span>
-                </div>
-
-                <div className="workflow-scroll-wrapper">
-                    <svg
-                        viewBox="0 0 1060 540"
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="workflow-svg"
-                        overflow="visible"
+                {/* Path Selector Tabs */}
+                <div className="workflow-path-selector">
+                    <button 
+                        className={`path-tab standard-tab ${activePath === 'standard' ? 'active' : ''}`}
+                        onClick={() => { setActivePath('standard'); setSelectedStep('collect'); }}
                     >
-                        <defs>
-                            {/* ── Gradients ── */}
-                            <linearGradient id="g-amber" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stopColor="#fbbf24" />
-                                <stop offset="100%" stopColor="#d97706" />
-                            </linearGradient>
-                            <linearGradient id="g-blue" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stopColor="#2180f0" />
-                                <stop offset="100%" stopColor="#0056b3" />
-                            </linearGradient>
-                            <linearGradient id="g-green" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stopColor="#10b981" />
-                                <stop offset="100%" stopColor="#059669" />
-                            </linearGradient>
-                            <linearGradient id="g-cyan" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stopColor="#38bdf8" />
-                                <stop offset="100%" stopColor="#0891b2" />
-                            </linearGradient>
-                            <linearGradient id="g-violet" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stopColor="#a78bfa" />
-                                <stop offset="100%" stopColor="#7c3aed" />
-                            </linearGradient>
-                            <linearGradient id="g-yellow" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stopColor="#fcd34d" />
-                                <stop offset="100%" stopColor="#f59e0b" />
-                            </linearGradient>
-                            <linearGradient id="g-pink" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stopColor="#f472b6" />
-                                <stop offset="100%" stopColor="#db2777" />
-                            </linearGradient>
-
-                            {/* ── Drop Shadow ── */}
-                            <filter id="wf-shadow" x="-20%" y="-20%" width="140%" height="140%">
-                                <feDropShadow dx="0" dy="4" stdDeviation="6" floodColor="rgba(0,0,0,0.20)" />
-                            </filter>
-
-                            {/* ── Arrowhead Markers ── */}
-                            <marker id="arr-dark" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-                                <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#475569" />
-                            </marker>
-                            <marker id="arr-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-                                <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#ea580c" />
-                            </marker>
-                            <marker id="arr-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-                                <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#059669" />
-                            </marker>
-                            <marker id="arr-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-                                <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#0056b3" />
-                            </marker>
-                        </defs>
-
-                        {/* ══════════════════════════════════════ */}
-                        {/*             SWIM LANE BANDS            */}
-                        {/* ══════════════════════════════════════ */}
-                        {/* Left lane  – Intake & Exceptions */}
-                        <rect x="18" y="30" width="230" height="492" rx="18" fill="#eff6ff" fillOpacity="0.75" stroke="#bfdbfe" strokeWidth="1" />
-                        {/* Centre lane – Standardisation */}
-                        <rect x="262" y="30" width="330" height="492" rx="18" fill="#f0fdf4" fillOpacity="0.80" stroke="#a7f3d0" strokeWidth="1" />
-                        {/* Right lane  – Quality Assurance */}
-                        <rect x="712" y="142" width="330" height="380" rx="18" fill="#fdf4ff" fillOpacity="0.80" stroke="#e9d5ff" strokeWidth="1" />
-
-                        {/* Lane Labels */}
-                        <text x="133" y="20" textAnchor="middle" fill="#2563eb" fontSize="9" fontWeight="800" letterSpacing="1.8">INTAKE &amp; EXCEPTIONS</text>
-                        <text x="427" y="20" textAnchor="middle" fill="#059669" fontSize="9" fontWeight="800" letterSpacing="1.8">STANDARDISATION</text>
-                        <text x="877" y="136" textAnchor="middle" fill="#7c3aed" fontSize="9" fontWeight="800" letterSpacing="1.8">QUALITY ASSURANCE</text>
-
-                        {/* ══════════════════════════════════════ */}
-                        {/*          CONNECTION / ARROW LINES      */}
-                        {/* ══════════════════════════════════════ */}
-
-                        {/* 1 ▶ Collect Existing Data → Analyze Data */}
-                        <path d="M 203,75 L 337,75"
-                            stroke="#475569" strokeWidth="2.5" fill="none" markerEnd="url(#arr-dark)" />
-
-                        {/* 2 ▶ Analyze Data → Identify Class Characteristics */}
-                        <path d="M 432,100 L 432,176"
-                            stroke="#475569" strokeWidth="2.5" fill="none" markerEnd="url(#arr-dark)" />
-
-                        {/* 3 ▶ Identify Class Characteristics → Freezing Templates */}
-                        <path d="M 432,225 L 432,301"
-                            stroke="#475569" strokeWidth="2.5" fill="none" markerEnd="url(#arr-dark)" />
-
-                        {/* 4 ▶ Freezing Templates → Populate Values */}
-                        <path d="M 432,350 L 432,408"
-                            stroke="#475569" strokeWidth="2.5" fill="none" markerEnd="url(#arr-dark)" />
-
-                        {/* 5 ▶ Identify Class → Submit to Client [top, orange] */}
-                        <path d="M 543,200 L 713,200"
-                            stroke="#ea580c" strokeWidth="2.5" fill="none" markerEnd="url(#arr-orange)" />
-
-                        {/* 6 ▶ Identify Class → Identify Missing Info [orange L-shape] */}
-                        <path d="M 322,210 L 254,210 L 254,284 L 214,284"
-                            stroke="#ea580c" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" markerEnd="url(#arr-orange)" />
-
-                        {/* 7 ▶ Freezing Templates → Identify Missing Info [orange] */}
-                        <path d="M 332,328 L 254,328 L 254,298 L 214,298"
-                            stroke="#ea580c" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" markerEnd="url(#arr-orange)" />
-
-                        {/* 8 ▶ Submit to Client [top] → Suggestion/Feedback [orange] */}
-                        <path d="M 787,234 L 787,288"
-                            stroke="#ea580c" strokeWidth="2.5" fill="none" markerEnd="url(#arr-orange)" />
-
-                        {/* 9 ▶ Suggestion/Feedback → Approval ["No", dark] */}
-                        <path d="M 787,392 L 787,438"
-                            stroke="#475569" strokeWidth="2.5" fill="none" markerEnd="url(#arr-dark)" />
-                        <text x="796" y="420" fill="#64748b" fontSize="11" fontWeight="700">No</text>
-
-                        {/* 10 ▶ Approval → Populate Values ["Yes", green] */}
-                        <path d="M 724,469 L 479,461"
-                            stroke="#059669" strokeWidth="2.5" fill="none" markerEnd="url(#arr-green)" />
-                        <text x="598" y="452" fill="#059669" fontSize="11" fontWeight="700">Yes</text>
-
-                        {/* 11 ▶ Identify Missing Info → Submit to Client [bottom] */}
-                        <path d="M 132,315 L 132,388"
-                            stroke="#475569" strokeWidth="2.5" fill="none" markerEnd="url(#arr-dark)" />
-
-                        {/* 12 ▶ Submit to Client [bottom] → Populate Values ["Yes", green curved] */}
-                        <path d="M 200,420 C 296,420 340,454 386,454"
-                            stroke="#059669" strokeWidth="2.5" fill="none" markerEnd="url(#arr-green)" />
-                        <text x="248" y="411" fill="#059669" fontSize="11" fontWeight="700">Yes</text>
-
-                        {/* 13 ▶ Populate Values → Analyze Data [iteration feedback, blue dashed] */}
-                        <path d="M 386,444 L 251,444 L 251,75 L 337,75"
-                            stroke="#0056b3" strokeWidth="2" strokeDasharray="8 4"
-                            strokeLinecap="round" strokeLinejoin="round" fill="none" markerEnd="url(#arr-blue)" />
-
-                        {/* ══════════════════════════════════════ */}
-                        {/*         SHAPE NODES (drawn last)       */}
-                        {/* ══════════════════════════════════════ */}
-
-                        {/* ① Collect Existing Data — Parallelogram (amber) */}
-                        <polygon
-                            points="78,52 218,52 188,98 48,98"
-                            fill="url(#g-amber)" filter="url(#wf-shadow)"
-                        />
-                        <text x="133" y="72" textAnchor="middle" fill="white" fontSize="13" fontWeight="700">Collect</text>
-                        <text x="133" y="88" textAnchor="middle" fill="white" fontSize="13" fontWeight="700">Existing Data</text>
-
-                        {/* ② Analyze Data — Rounded rect (blue) */}
-                        <rect x="337" y="51" width="190" height="49" rx="12" fill="url(#g-blue)" filter="url(#wf-shadow)" />
-                        <text x="432" y="80" textAnchor="middle" fill="white" fontSize="14" fontWeight="700">Analyze Data</text>
-
-                        {/* ③ Identify Class Characteristics — Rounded rect (blue) */}
-                        <rect x="322" y="176" width="221" height="49" rx="12" fill="url(#g-blue)" filter="url(#wf-shadow)" />
-                        <text x="432" y="196" textAnchor="middle" fill="white" fontSize="12" fontWeight="700">Identify Class</text>
-                        <text x="432" y="213" textAnchor="middle" fill="white" fontSize="12" fontWeight="700">Characteristics</text>
-
-                        {/* ④ Freezing Templates — Rounded rect (blue) */}
-                        <rect x="332" y="301" width="200" height="49" rx="12" fill="url(#g-blue)" filter="url(#wf-shadow)" />
-                        <text x="432" y="321" textAnchor="middle" fill="white" fontSize="13" fontWeight="700">Freezing</text>
-                        <text x="432" y="338" textAnchor="middle" fill="white" fontSize="13" fontWeight="700">Templates</text>
-
-                        {/* ⑤ Populate Values — Hexagon (green) */}
-                        {/* flat-top hexagon: r=52, cx=432, cy=460 */}
-                        <polygon
-                            points="477,486 432,512 387,486 387,434 432,408 477,434"
-                            fill="url(#g-green)" filter="url(#wf-shadow)"
-                        />
-                        <text x="432" y="457" textAnchor="middle" fill="white" fontSize="13" fontWeight="700">Populate</text>
-                        <text x="432" y="473" textAnchor="middle" fill="white" fontSize="13" fontWeight="700">Values</text>
-
-                        {/* ⑥ Submit to Client (top) — Ellipse (cyan) */}
-                        <ellipse cx="787" cy="200" rx="74" ry="34" fill="url(#g-cyan)" filter="url(#wf-shadow)" />
-                        <text x="787" y="196" textAnchor="middle" fill="white" fontSize="12" fontWeight="700">Submit to</text>
-                        <text x="787" y="213" textAnchor="middle" fill="white" fontSize="12" fontWeight="700">Client</text>
-
-                        {/* ⑦ Suggestion / Feedback — Hexagon (yellow) */}
-                        {/* flat-top hexagon: r=52, cx=787, cy=340 */}
-                        <polygon
-                            points="832,366 787,392 742,366 742,314 787,288 832,314"
-                            fill="url(#g-yellow)" filter="url(#wf-shadow)"
-                        />
-                        <text x="787" y="337" textAnchor="middle" fill="white" fontSize="11.5" fontWeight="700">Suggestion/</text>
-                        <text x="787" y="353" textAnchor="middle" fill="white" fontSize="11.5" fontWeight="700">Feedback</text>
-
-                        {/* ⑧ Approval — Ellipse (pink) */}
-                        <ellipse cx="787" cy="470" rx="63" ry="32" fill="url(#g-pink)" filter="url(#wf-shadow)" />
-                        <text x="787" y="474" textAnchor="middle" fill="white" fontSize="14" fontWeight="700">Approval</text>
-
-                        {/* ⑨ Identify Missing Info — Rounded rect (violet) */}
-                        <rect x="50" y="267" width="164" height="49" rx="12" fill="url(#g-violet)" filter="url(#wf-shadow)" />
-                        <text x="132" y="287" textAnchor="middle" fill="white" fontSize="12" fontWeight="700">Identify</text>
-                        <text x="132" y="304" textAnchor="middle" fill="white" fontSize="12" fontWeight="700">Missing Info</text>
-
-                        {/* ⑩ Submit to Client (bottom) — Ellipse (cyan) */}
-                        <ellipse cx="132" cy="420" rx="68" ry="32" fill="url(#g-cyan)" filter="url(#wf-shadow)" />
-                        <text x="132" y="416" textAnchor="middle" fill="white" fontSize="12" fontWeight="700">Submit to</text>
-                        <text x="132" y="432" textAnchor="middle" fill="white" fontSize="12" fontWeight="700">Client</text>
-
-                    </svg>
+                        <CheckCircle2 size={16} />
+                        <span>Standard Path</span>
+                    </button>
+                    <button 
+                        className={`path-tab exceptions-tab ${activePath === 'exceptions' ? 'active' : ''}`}
+                        onClick={() => { setActivePath('exceptions'); setSelectedStep('missing_info'); }}
+                    >
+                        <HelpCircle size={16} />
+                        <span>Exception Handling</span>
+                    </button>
+                    <button 
+                        className={`path-tab feedback-tab ${activePath === 'feedback' ? 'active' : ''}`}
+                        onClick={() => { setActivePath('feedback'); setSelectedStep('populate_values'); }}
+                    >
+                        <Shuffle size={16} />
+                        <span>Feedback Loop</span>
+                    </button>
                 </div>
+
+                <div className="path-info-bar">
+                    <h3 className={`path-title color-${paths[activePath].color}`}>{paths[activePath].title}</h3>
+                    <p className="path-description">{paths[activePath].description}</p>
+                </div>
+
+                {/* Desktop View */}
+                <div className="mc-flowchart-desktop">
+                    <div className="mc-flowchart-canvas">
+                        {/* Swimlane Labels */}
+                        <div className="swimlane-label lane-intake" style={{ left: '0px', width: '262px' }}>
+                            <span>INTAKE &amp; EXCEPTIONS</span>
+                        </div>
+                        <div className="swimlane-label lane-standardization" style={{ left: '262px', width: '430px' }}>
+                            <span>STANDARDISATION PROCESS</span>
+                        </div>
+                        <div className="swimlane-label lane-qa" style={{ left: '692px', width: '308px' }}>
+                            <span>QUALITY ASSURANCE</span>
+                        </div>
+
+                        {/* Connection Lines (SVG) */}
+                        <svg className="mc-flowchart-svg" viewBox="0 0 1000 600" width="1000" height="600">
+                            <defs>
+                                <marker id="arr-gray" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                                    <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#cbd5e1" />
+                                </marker>
+                                <marker id="arr-active" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                                    <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill={activePath === 'exceptions' ? '#8b5cf6' : activePath === 'feedback' ? '#d97706' : '#0056b3'} />
+                                </marker>
+                            </defs>
+
+                            {/* Base Gray Connections */}
+                            {Object.entries(connectionsData).map(([key, conn]) => {
+                                const isLinkActive = paths[activePath].connections.includes(key);
+                                return (
+                                    <path
+                                        key={`base-${key}`}
+                                        d={conn.path}
+                                        stroke="#cbd5e1"
+                                        strokeWidth="2.5"
+                                        fill="none"
+                                        markerEnd="url(#arr-gray)"
+                                        style={{ opacity: isLinkActive ? 0.15 : 0.7 }}
+                                    />
+                                );
+                            })}
+
+                            {/* Active Glowing Connections */}
+                            {Object.entries(connectionsData).map(([key, conn]) => {
+                                const isLinkActive = paths[activePath].connections.includes(key);
+                                if (!isLinkActive) return null;
+                                return (
+                                    <g key={`active-group-${key}`}>
+                                        {/* Glow Layer */}
+                                        <path
+                                            d={conn.path}
+                                            className={`connection-line-glow glow-${paths[activePath].color}`}
+                                            stroke={activePath === 'exceptions' ? '#c084fc' : activePath === 'feedback' ? '#fcd34d' : '#3b82f6'}
+                                            strokeWidth="5"
+                                            fill="none"
+                                        />
+                                        {/* Core Flow Line */}
+                                        <path
+                                            d={conn.path}
+                                            className={`connection-line-flow flow-${paths[activePath].color}`}
+                                            stroke={activePath === 'exceptions' ? '#8b5cf6' : activePath === 'feedback' ? '#ea580c' : '#0056b3'}
+                                            strokeWidth="3"
+                                            fill="none"
+                                            markerEnd="url(#arr-active)"
+                                        />
+                                    </g>
+                                );
+                            })}
+                        </svg>
+
+                        {/* Interactive Nodes */}
+                        {workflowSteps.map((step) => {
+                            const isStepInActivePath = paths[activePath].steps.includes(step.id);
+                            const isStepSelected = selectedStep === step.id;
+                            const isStepHovered = hoveredStep === step.id;
+                            
+                            return (
+                                <div
+                                    key={step.id}
+                                    className={`flow-node ${step.color} ${isStepInActivePath ? 'in-path' : 'out-of-path'} ${isStepSelected ? 'selected' : ''}`}
+                                    style={{
+                                        left: `${step.x - step.width / 2}px`,
+                                        top: `${step.y - step.height / 2}px`,
+                                        width: `${step.width}px`,
+                                        height: `${step.height}px`
+                                    }}
+                                    onClick={() => setSelectedStep(step.id)}
+                                    onMouseEnter={() => setHoveredStep(step.id)}
+                                    onMouseLeave={() => setHoveredStep(null)}
+                                >
+                                    <div className="flow-node-icon">{step.icon}</div>
+                                    <div className="flow-node-content">
+                                        <h4>{step.title}</h4>
+                                        <span className="flow-node-lane">{step.laneName}</span>
+                                    </div>
+                                    {isStepInActivePath && (
+                                        <div className="active-dot-indicator" />
+                                    )}
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+
+                {/* Mobile View */}
+                <div className="mc-flowchart-mobile">
+                    <p className="mobile-instruction">Tap any step to see details and input/output parameters.</p>
+                    <div className="mobile-timeline">
+                        {workflowSteps
+                            .filter(step => paths[activePath].steps.includes(step.id))
+                            .map((step, idx, arr) => {
+                                const isStepSelected = selectedStep === step.id;
+                                return (
+                                    <React.Fragment key={`mobile-${step.id}`}>
+                                        <div 
+                                            className={`mobile-node ${step.color} ${isStepSelected ? 'active' : ''}`}
+                                            onClick={() => setSelectedStep(step.id)}
+                                        >
+                                            <div className="mobile-node-header">
+                                                <div className="mobile-node-icon">{step.icon}</div>
+                                                <div className="mobile-node-title-area">
+                                                    <h4>{step.title}</h4>
+                                                    <span className="mobile-node-lane">{step.laneName}</span>
+                                                </div>
+                                            </div>
+                                            
+                                            {isStepSelected && (
+                                                <div className="mobile-node-desc">
+                                                    <p>{step.description}</p>
+                                                    <div className="mobile-node-meta">
+                                                        <div><strong>Owner:</strong> {step.owner}</div>
+                                                        <div><strong>Inputs:</strong> {step.inputs}</div>
+                                                        <div><strong>Outputs:</strong> {step.outputs}</div>
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
+                                        {idx < arr.length - 1 && (
+                                            <div className="mobile-connector">
+                                                <ArrowRight size={18} style={{ transform: 'rotate(90deg)' }} />
+                                            </div>
+                                        )}
+                                    </React.Fragment>
+                                );
+                            })}
+                    </div>
+                </div>
+
+                {/* Details Panel (Active Step) */}
+                {selectedStep && (
+                    <div className={`active-step-panel border-${workflowSteps.find(s => s.id === selectedStep).color}`}>
+                        {(() => {
+                            const step = workflowSteps.find(s => s.id === selectedStep);
+                            return (
+                                <>
+                                    <div className={`active-step-header ${step.color}`}>
+                                        <div className="active-step-icon">{step.icon}</div>
+                                        <div>
+                                            <span className="active-step-category">{step.laneName}</span>
+                                            <h3>{step.title}</h3>
+                                        </div>
+                                    </div>
+                                    <p className="active-step-description">{step.description}</p>
+                                    <div className="active-step-details-grid">
+                                        <div className="details-col">
+                                            <span className="details-label">RESPONSIBILITY</span>
+                                            <span className="details-val">{step.owner}</span>
+                                        </div>
+                                        <div className="details-col">
+                                            <span className="details-label">KEY INPUTS</span>
+                                            <span className="details-val">{step.inputs}</span>
+                                        </div>
+                                        <div className="details-col">
+                                            <span className="details-label">DELIVERABLE / OUTPUT</span>
+                                            <span className="details-val">{step.outputs}</span>
+                                        </div>
+                                    </div>
+                                </>
+                            );
+                        })()}
+                    </div>
+                )}
             </section>
 
             {/* ── Advantages ── */}
