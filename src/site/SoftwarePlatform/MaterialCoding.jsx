@@ -1,35 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './MaterialCoding.css';
 import heroImg from '../../assets/software/material_coding_hero.png';
-import { 
-    Ruler, 
-    Factory, 
-    ClipboardList, 
-    Database, 
-    Tags, 
-    Link as LinkIcon, 
+import {
+    Ruler,
+    Factory,
+    ClipboardList,
+    Database,
+    Tags,
+    Link as LinkIcon,
     FileText,
     MessageSquare,
     DollarSign,
     Settings,
     CheckCircle2,
-    FolderDown,
-    Search,
-    Eye,
-    AlertCircle,
-    Lock,
-    Send,
-    Edit3,
-    MessageCircle,
-    ThumbsUp,
     Shuffle,
     Layers,
     Activity
 } from 'lucide-react';
 
 const MaterialCoding = () => {
-    const [activeStep, setActiveStep] = useState('collect');
-
     const masters = [
         { title: "UOM Master", icon: <Ruler size={24} /> },
         { title: "Manufacturer/Vendor Master", icon: <Factory size={24} /> },
@@ -38,99 +27,6 @@ const MaterialCoding = () => {
         { title: "Noun & Modifier Master", icon: <Tags size={24} /> },
         { title: "Reference Type Master", icon: <LinkIcon size={24} /> },
         { title: "Standard Formats for Data Entry", icon: <FileText size={24} /> }
-    ];
-
-    const workflowSteps = [
-        {
-            id: "collect",
-            title: "Collect Existing Data",
-            description: "Gather legacy catalogs, spreadsheets, PDFs, and unstructured data streams across all departments.",
-            laneName: "Data Collection",
-            color: "peach",
-            icon: <FolderDown size={20} />,
-            coords: ['50px', '25px']
-        },
-        {
-            id: "missing-info",
-            title: "Identify Missing Info",
-            description: "Scan data for missing manufacturers, part numbers, raw material grades, and critical dimensions.",
-            laneName: "Exception Handling",
-            color: "purple",
-            icon: <AlertCircle size={20} />,
-            coords: ['50px', '175px']
-        },
-        {
-            id: "submit-client-missing",
-            title: "Submit to Client (Query)",
-            description: "Package and submit missing information requests directly to the client's engineering desk.",
-            laneName: "Exception Handling",
-            color: "blue",
-            icon: <Send size={20} />,
-            coords: ['50px', '325px']
-        },
-        {
-            id: "analyze",
-            title: "Analyze Data",
-            description: "Examine cleaned and unified data to determine parent-child links and catalog relationships.",
-            laneName: "Standardisation",
-            color: "green",
-            icon: <Search size={20} />,
-            coords: ['400px', '25px']
-        },
-        {
-            id: "class-char",
-            title: "Identify Class Characteristics",
-            description: "Map materials to standard classifications (UNSPSC/FDS) and define attribute templates.",
-            laneName: "Standardisation",
-            color: "green",
-            icon: <Eye size={20} />,
-            coords: ['400px', '175px']
-        },
-        {
-            id: "freezing",
-            title: "Freezing Templates",
-            description: "Lock down data schemas, naming conventions, nouns, modifiers, and character lengths.",
-            laneName: "Standardisation",
-            color: "green",
-            icon: <Lock size={20} />,
-            coords: ['400px', '325px']
-        },
-        {
-            id: "populate",
-            title: "Populate Values",
-            description: "Enrich the database by filling values into frozen structures with maximum accuracy.",
-            laneName: "Standardisation",
-            color: "yellow",
-            icon: <Edit3 size={20} />,
-            coords: ['400px', '475px']
-        },
-        {
-            id: "submit-client-review",
-            title: "Submit to Client (Review)",
-            description: "Send standardized draft catalogs to client departments for user acceptance testing.",
-            laneName: "Quality Assurance",
-            color: "blue",
-            icon: <Send size={20} />,
-            coords: ['750px', '175px']
-        },
-        {
-            id: "feedback",
-            title: "Suggestion / Feedback",
-            description: "Collect design tweaks, nomenclature revisions, and special formatting requests.",
-            laneName: "Quality Assurance",
-            color: "yellow",
-            icon: <MessageCircle size={20} />,
-            coords: ['750px', '325px']
-        },
-        {
-            id: "approval",
-            title: "Approval Gateway",
-            description: "Sign-off on the catalog from procurement, engineering, and plant management leads.",
-            laneName: "Quality Assurance",
-            color: "pink",
-            icon: <ThumbsUp size={20} />,
-            coords: ['750px', '475px']
-        }
     ];
 
     const advantages = [
@@ -168,69 +64,56 @@ const MaterialCoding = () => {
 
     return (
         <div className="material-coding-page">
+
+            {/* ── Hero ── */}
             <div className="mc-hero" style={{ backgroundImage: `url(${heroImg})` }}>
                 <div className="mc-hero-overlay">
                     <div className="container">
-                        <h1 className="mc-title">Material Coding & Cataloguing</h1>
+                        <h1 className="mc-title">Material Coding &amp; Cataloguing</h1>
                         <p className="mc-subtitle">Optimizing Operational Intelligence through Strategic Data Management</p>
                     </div>
                 </div>
             </div>
 
+            {/* ── Intro ── */}
             <section className="mc-intro-section container">
                 <div className="mc-card intro-card">
                     <h2>The Foundation of Excellence</h2>
                     <p>
-                        The material catalog contains key information that is used to describe the materials used for the operation of the business. 
+                        The material catalog contains key information that is used to describe the materials used for the operation of the business.
                         It is truly cross-domain and is the primary means to ensure effective communication across your entire organization.
                     </p>
                     <div className="mc-grid">
-                        <div className="mc-feature">
-                            <CheckCircle2 size={18} className="feature-icon" />
-                            <p>Spares used by the maintenance department</p>
-                        </div>
-                        <div className="mc-feature">
-                            <CheckCircle2 size={18} className="feature-icon" />
-                            <p>Materials used for manufacturing</p>
-                        </div>
-                        <div className="mc-feature">
-                            <CheckCircle2 size={18} className="feature-icon" />
-                            <p>Materials held in the warehouse</p>
-                        </div>
-                        <div className="mc-feature">
-                            <CheckCircle2 size={18} className="feature-icon" />
-                            <p>Procurement and vendor supply management</p>
-                        </div>
+                        <div className="mc-feature"><CheckCircle2 size={18} className="feature-icon" /><p>Spares used by the maintenance department</p></div>
+                        <div className="mc-feature"><CheckCircle2 size={18} className="feature-icon" /><p>Materials used for manufacturing</p></div>
+                        <div className="mc-feature"><CheckCircle2 size={18} className="feature-icon" /><p>Materials held in the warehouse</p></div>
+                        <div className="mc-feature"><CheckCircle2 size={18} className="feature-icon" /><p>Procurement and vendor supply management</p></div>
                     </div>
                 </div>
             </section>
 
+            {/* ── Value Cards ── */}
             <section className="mc-value-section container">
                 <div className="mc-value-grid">
                     <div className="mc-value-card">
-                        <div className="value-icon-box">
-                            <MessageSquare size={32} />
-                        </div>
+                        <div className="value-icon-box"><MessageSquare size={32} /></div>
                         <h3>Vital Communication</h3>
                         <p>Good communication is vital to ensure that critical production materials and spares are available when required.</p>
                     </div>
                     <div className="mc-value-card highlight">
-                        <div className="value-icon-box">
-                            <DollarSign size={32} />
-                        </div>
+                        <div className="value-icon-box"><DollarSign size={32} /></div>
                         <h3>Cost Optimization</h3>
                         <p>A good quality material catalog prevents unnecessary expense through the selection of correct materials, reducing expediting and excessive stock holdings.</p>
                     </div>
                     <div className="mc-value-card">
-                        <div className="value-icon-box">
-                            <Settings size={32} />
-                        </div>
+                        <div className="value-icon-box"><Settings size={32} /></div>
                         <h3>Operational Efficiency</h3>
                         <p>Proper cataloguing eliminates rework and ensures that inventory controllers can manage assets with 100% accuracy.</p>
                     </div>
                 </div>
             </section>
 
+            {/* ── Standard Masters ── */}
             <section className="mc-masters-section container">
                 <h2 className="section-title">Standard Masters</h2>
                 <p className="section-subtitle">A comprehensive suite of masters used in professional Material Cataloguing</p>
@@ -244,157 +127,226 @@ const MaterialCoding = () => {
                 </div>
             </section>
 
-            {/* Workflow Section */}
+            {/* ── Workflow SVG ── */}
             <section className="mc-workflow-section container">
                 <h2 className="section-title">Material Master-Work Flow</h2>
-                <p className="section-subtitle">Our structured, iterative process for constructing high-fidelity material catalogs</p>
-                
-                {/* Desktop Flowchart */}
-                <div className="mc-flowchart-desktop">
-                    <div className="mc-flowchart-canvas">
-                        <svg className="mc-flowchart-svg" viewBox="0 0 1000 600" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                                    <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#64748b" />
-                                </marker>
-                                <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                                    <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#10b981" />
-                                </marker>
-                                <marker id="arrow-orange" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                                    <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#e28a5c" />
-                                </marker>
-                                <marker id="arrow-purple" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                                    <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#8b5cf6" />
-                                </marker>
-                            </defs>
-                            
-                            {/* Connection Lines */}
-                            {/* Collect -> Analyze */}
-                            <path d="M 250,70 L 390,70" stroke="#64748b" strokeWidth="2" fill="none" markerEnd="url(#arrow)" />
-                            
-                            {/* Collect -> Identify Missing */}
-                            <path d="M 150,115 L 150,165" stroke="#64748b" strokeWidth="2" fill="none" markerEnd="url(#arrow)" />
-                            
-                            {/* Identify Missing -> Submit Client (Query) */}
-                            <path d="M 150,265 L 150,315" stroke="#64748b" strokeWidth="2" fill="none" markerEnd="url(#arrow)" />
-                            
-                            {/* Submit Client (Query) -> Feedback loop to Collect */}
-                            <path d="M 150,415 L 150,440 L 30,440 L 30,70 L 40,70" stroke="#e28a5c" strokeWidth="2" fill="none" strokeDasharray="5 5" markerEnd="url(#arrow-orange)" />
-                            
-                            {/* Identify Class Characteristics -> Identify Missing */}
-                            <path d="M 400,220 L 260,220" stroke="#8b5cf6" strokeWidth="2" fill="none" markerEnd="url(#arrow-purple)" />
-                            
-                            {/* Analyze -> Class Characteristics */}
-                            <path d="M 500,115 L 500,165" stroke="#10b981" strokeWidth="2.5" fill="none" markerEnd="url(#arrow-green)" />
-                            
-                            {/* Class Characteristics -> Freezing Templates */}
-                            <path d="M 500,265 L 500,315" stroke="#10b981" strokeWidth="2.5" fill="none" markerEnd="url(#arrow-green)" />
-                            
-                            {/* Class Characteristics -> Submit Client (Review) */}
-                            <path d="M 600,220 L 740,220" stroke="#e28a5c" strokeWidth="2" fill="none" markerEnd="url(#arrow-orange)" />
-                            
-                            {/* Freezing Templates -> Populate Values */}
-                            <path d="M 500,415 L 500,465" stroke="#10b981" strokeWidth="2.5" fill="none" markerEnd="url(#arrow-green)" />
-                            
-                            {/* Submit Client (Review) -> Suggestion/Feedback */}
-                            <path d="M 850,265 L 850,315" stroke="#e28a5c" strokeWidth="2" fill="none" markerEnd="url(#arrow-orange)" />
-                            
-                            {/* Suggestion/Feedback -> Approval */}
-                            <path d="M 850,415 L 850,465" stroke="#64748b" strokeWidth="2" fill="none" markerEnd="url(#arrow)" />
-                            <text x="860" y="445" fill="#64748b" className="svg-text">No</text>
-                            
-                            {/* Approval -> Populate Values */}
-                            <path d="M 750,520 L 610,520" stroke="#10b981" strokeWidth="2.5" fill="none" markerEnd="url(#arrow-green)" />
-                            <text x="675" y="505" fill="#10b981" className="svg-text">Yes</text>
-                            
-                            {/* Populate Values -> Analyze Feedback Loop */}
-                            <path d="M 400,520 L 330,520 L 330,70 L 390,70" stroke="#10b981" strokeWidth="2" fill="none" strokeDasharray="5 5" markerEnd="url(#arrow-green)" />
-                            <text x="340" y="295" fill="#10b981" className="svg-text rotate-text">Validation</text>
-                        </svg>
+                <p className="section-subtitle">Our structured, iterative process for building high-fidelity material catalogs</p>
 
-                        {/* Interactive Workflow Cards */}
-                        {workflowSteps.map((step) => {
-                            const [left, top] = step.coords;
-                            return (
-                                <div 
-                                    key={step.id} 
-                                    className={`flow-node ${step.color} ${activeStep === step.id ? 'active' : ''}`}
-                                    style={{ 
-                                        position: 'absolute', 
-                                        left: left, 
-                                        top: top,
-                                        width: '200px',
-                                        height: '90px',
-                                        cursor: 'pointer'
-                                    }}
-                                    onClick={() => setActiveStep(step.id)}
-                                >
-                                    <div className="flow-node-icon">{step.icon}</div>
-                                    <div className="flow-node-content">
-                                        <h4>{step.title}</h4>
-                                        <span className="flow-node-lane">{step.laneName}</span>
-                                    </div>
-                                </div>
-                            );
-                        })}
-                    </div>
-
-                    {/* Active Step Panel */}
-                    <div className="active-step-panel">
-                        <div className={`active-step-header ${workflowSteps.find(s => s.id === activeStep).color}`}>
-                            <div className="active-step-icon">
-                                {workflowSteps.find(s => s.id === activeStep).icon}
-                            </div>
-                            <h3>{workflowSteps.find(s => s.id === activeStep).title}</h3>
-                        </div>
-                        <p className="active-step-description">
-                            {workflowSteps.find(s => s.id === activeStep).description}
-                        </p>
-                    </div>
+                <div className="workflow-legend">
+                    <span className="legend-item legend-standard"><span className="legend-line dark"></span>Standard Flow</span>
+                    <span className="legend-item"><span className="legend-line orange"></span>Client / Exception</span>
+                    <span className="legend-item"><span className="legend-line green"></span>Approval / Loop</span>
+                    <span className="legend-item"><span className="legend-line blue dashed"></span>Iteration Feedback</span>
                 </div>
 
-                {/* Mobile Flowchart */}
-                <div className="mc-flowchart-mobile">
-                    <p className="mobile-instruction">Tap on steps to explore our material flow process:</p>
-                    <div className="mobile-timeline">
-                        {workflowSteps.map((step, idx) => (
-                            <React.Fragment key={step.id}>
-                                <div 
-                                    className={`mobile-node ${step.color} ${activeStep === step.id ? 'active' : ''}`}
-                                    onClick={() => setActiveStep(step.id)}
-                                >
-                                    <div className="mobile-node-header">
-                                        <div className="mobile-node-icon">{step.icon}</div>
-                                        <h4>{step.title}</h4>
-                                    </div>
-                                    {activeStep === step.id && (
-                                        <p className="mobile-node-desc">{step.description}</p>
-                                    )}
-                                </div>
-                                {idx < workflowSteps.length - 1 && (
-                                    <div className="mobile-connector">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                            <line x1="12" y1="5" x2="12" y2="19"></line>
-                                            <polyline points="19 12 12 19 5 12"></polyline>
-                                        </svg>
-                                    </div>
-                                )}
-                            </React.Fragment>
-                        ))}
-                    </div>
+                <div className="workflow-scroll-wrapper">
+                    <svg
+                        viewBox="0 0 1060 540"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="workflow-svg"
+                        overflow="visible"
+                    >
+                        <defs>
+                            {/* ── Gradients ── */}
+                            <linearGradient id="g-amber" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stopColor="#fbbf24" />
+                                <stop offset="100%" stopColor="#d97706" />
+                            </linearGradient>
+                            <linearGradient id="g-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stopColor="#2180f0" />
+                                <stop offset="100%" stopColor="#0056b3" />
+                            </linearGradient>
+                            <linearGradient id="g-green" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stopColor="#10b981" />
+                                <stop offset="100%" stopColor="#059669" />
+                            </linearGradient>
+                            <linearGradient id="g-cyan" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stopColor="#38bdf8" />
+                                <stop offset="100%" stopColor="#0891b2" />
+                            </linearGradient>
+                            <linearGradient id="g-violet" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stopColor="#a78bfa" />
+                                <stop offset="100%" stopColor="#7c3aed" />
+                            </linearGradient>
+                            <linearGradient id="g-yellow" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stopColor="#fcd34d" />
+                                <stop offset="100%" stopColor="#f59e0b" />
+                            </linearGradient>
+                            <linearGradient id="g-pink" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stopColor="#f472b6" />
+                                <stop offset="100%" stopColor="#db2777" />
+                            </linearGradient>
+
+                            {/* ── Drop Shadow ── */}
+                            <filter id="wf-shadow" x="-20%" y="-20%" width="140%" height="140%">
+                                <feDropShadow dx="0" dy="4" stdDeviation="6" floodColor="rgba(0,0,0,0.20)" />
+                            </filter>
+
+                            {/* ── Arrowhead Markers ── */}
+                            <marker id="arr-dark" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+                                <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#475569" />
+                            </marker>
+                            <marker id="arr-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+                                <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#ea580c" />
+                            </marker>
+                            <marker id="arr-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+                                <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#059669" />
+                            </marker>
+                            <marker id="arr-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+                                <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#0056b3" />
+                            </marker>
+                        </defs>
+
+                        {/* ══════════════════════════════════════ */}
+                        {/*             SWIM LANE BANDS            */}
+                        {/* ══════════════════════════════════════ */}
+                        {/* Left lane  – Intake & Exceptions */}
+                        <rect x="18" y="30" width="230" height="492" rx="18" fill="#eff6ff" fillOpacity="0.75" stroke="#bfdbfe" strokeWidth="1" />
+                        {/* Centre lane – Standardisation */}
+                        <rect x="262" y="30" width="330" height="492" rx="18" fill="#f0fdf4" fillOpacity="0.80" stroke="#a7f3d0" strokeWidth="1" />
+                        {/* Right lane  – Quality Assurance */}
+                        <rect x="712" y="142" width="330" height="380" rx="18" fill="#fdf4ff" fillOpacity="0.80" stroke="#e9d5ff" strokeWidth="1" />
+
+                        {/* Lane Labels */}
+                        <text x="133" y="20" textAnchor="middle" fill="#2563eb" fontSize="9" fontWeight="800" letterSpacing="1.8">INTAKE &amp; EXCEPTIONS</text>
+                        <text x="427" y="20" textAnchor="middle" fill="#059669" fontSize="9" fontWeight="800" letterSpacing="1.8">STANDARDISATION</text>
+                        <text x="877" y="136" textAnchor="middle" fill="#7c3aed" fontSize="9" fontWeight="800" letterSpacing="1.8">QUALITY ASSURANCE</text>
+
+                        {/* ══════════════════════════════════════ */}
+                        {/*          CONNECTION / ARROW LINES      */}
+                        {/* ══════════════════════════════════════ */}
+
+                        {/* 1 ▶ Collect Existing Data → Analyze Data */}
+                        <path d="M 203,75 L 337,75"
+                            stroke="#475569" strokeWidth="2.5" fill="none" markerEnd="url(#arr-dark)" />
+
+                        {/* 2 ▶ Analyze Data → Identify Class Characteristics */}
+                        <path d="M 432,100 L 432,176"
+                            stroke="#475569" strokeWidth="2.5" fill="none" markerEnd="url(#arr-dark)" />
+
+                        {/* 3 ▶ Identify Class Characteristics → Freezing Templates */}
+                        <path d="M 432,225 L 432,301"
+                            stroke="#475569" strokeWidth="2.5" fill="none" markerEnd="url(#arr-dark)" />
+
+                        {/* 4 ▶ Freezing Templates → Populate Values */}
+                        <path d="M 432,350 L 432,408"
+                            stroke="#475569" strokeWidth="2.5" fill="none" markerEnd="url(#arr-dark)" />
+
+                        {/* 5 ▶ Identify Class → Submit to Client [top, orange] */}
+                        <path d="M 543,200 L 713,200"
+                            stroke="#ea580c" strokeWidth="2.5" fill="none" markerEnd="url(#arr-orange)" />
+
+                        {/* 6 ▶ Identify Class → Identify Missing Info [orange L-shape] */}
+                        <path d="M 322,210 L 254,210 L 254,284 L 214,284"
+                            stroke="#ea580c" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" markerEnd="url(#arr-orange)" />
+
+                        {/* 7 ▶ Freezing Templates → Identify Missing Info [orange] */}
+                        <path d="M 332,328 L 254,328 L 254,298 L 214,298"
+                            stroke="#ea580c" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" markerEnd="url(#arr-orange)" />
+
+                        {/* 8 ▶ Submit to Client [top] → Suggestion/Feedback [orange] */}
+                        <path d="M 787,234 L 787,288"
+                            stroke="#ea580c" strokeWidth="2.5" fill="none" markerEnd="url(#arr-orange)" />
+
+                        {/* 9 ▶ Suggestion/Feedback → Approval ["No", dark] */}
+                        <path d="M 787,392 L 787,438"
+                            stroke="#475569" strokeWidth="2.5" fill="none" markerEnd="url(#arr-dark)" />
+                        <text x="796" y="420" fill="#64748b" fontSize="11" fontWeight="700">No</text>
+
+                        {/* 10 ▶ Approval → Populate Values ["Yes", green] */}
+                        <path d="M 724,469 L 479,461"
+                            stroke="#059669" strokeWidth="2.5" fill="none" markerEnd="url(#arr-green)" />
+                        <text x="598" y="452" fill="#059669" fontSize="11" fontWeight="700">Yes</text>
+
+                        {/* 11 ▶ Identify Missing Info → Submit to Client [bottom] */}
+                        <path d="M 132,315 L 132,388"
+                            stroke="#475569" strokeWidth="2.5" fill="none" markerEnd="url(#arr-dark)" />
+
+                        {/* 12 ▶ Submit to Client [bottom] → Populate Values ["Yes", green curved] */}
+                        <path d="M 200,420 C 296,420 340,454 386,454"
+                            stroke="#059669" strokeWidth="2.5" fill="none" markerEnd="url(#arr-green)" />
+                        <text x="248" y="411" fill="#059669" fontSize="11" fontWeight="700">Yes</text>
+
+                        {/* 13 ▶ Populate Values → Analyze Data [iteration feedback, blue dashed] */}
+                        <path d="M 386,444 L 251,444 L 251,75 L 337,75"
+                            stroke="#0056b3" strokeWidth="2" strokeDasharray="8 4"
+                            strokeLinecap="round" strokeLinejoin="round" fill="none" markerEnd="url(#arr-blue)" />
+
+                        {/* ══════════════════════════════════════ */}
+                        {/*         SHAPE NODES (drawn last)       */}
+                        {/* ══════════════════════════════════════ */}
+
+                        {/* ① Collect Existing Data — Parallelogram (amber) */}
+                        <polygon
+                            points="78,52 218,52 188,98 48,98"
+                            fill="url(#g-amber)" filter="url(#wf-shadow)"
+                        />
+                        <text x="133" y="72" textAnchor="middle" fill="white" fontSize="13" fontWeight="700">Collect</text>
+                        <text x="133" y="88" textAnchor="middle" fill="white" fontSize="13" fontWeight="700">Existing Data</text>
+
+                        {/* ② Analyze Data — Rounded rect (blue) */}
+                        <rect x="337" y="51" width="190" height="49" rx="12" fill="url(#g-blue)" filter="url(#wf-shadow)" />
+                        <text x="432" y="80" textAnchor="middle" fill="white" fontSize="14" fontWeight="700">Analyze Data</text>
+
+                        {/* ③ Identify Class Characteristics — Rounded rect (blue) */}
+                        <rect x="322" y="176" width="221" height="49" rx="12" fill="url(#g-blue)" filter="url(#wf-shadow)" />
+                        <text x="432" y="196" textAnchor="middle" fill="white" fontSize="12" fontWeight="700">Identify Class</text>
+                        <text x="432" y="213" textAnchor="middle" fill="white" fontSize="12" fontWeight="700">Characteristics</text>
+
+                        {/* ④ Freezing Templates — Rounded rect (blue) */}
+                        <rect x="332" y="301" width="200" height="49" rx="12" fill="url(#g-blue)" filter="url(#wf-shadow)" />
+                        <text x="432" y="321" textAnchor="middle" fill="white" fontSize="13" fontWeight="700">Freezing</text>
+                        <text x="432" y="338" textAnchor="middle" fill="white" fontSize="13" fontWeight="700">Templates</text>
+
+                        {/* ⑤ Populate Values — Hexagon (green) */}
+                        {/* flat-top hexagon: r=52, cx=432, cy=460 */}
+                        <polygon
+                            points="477,486 432,512 387,486 387,434 432,408 477,434"
+                            fill="url(#g-green)" filter="url(#wf-shadow)"
+                        />
+                        <text x="432" y="457" textAnchor="middle" fill="white" fontSize="13" fontWeight="700">Populate</text>
+                        <text x="432" y="473" textAnchor="middle" fill="white" fontSize="13" fontWeight="700">Values</text>
+
+                        {/* ⑥ Submit to Client (top) — Ellipse (cyan) */}
+                        <ellipse cx="787" cy="200" rx="74" ry="34" fill="url(#g-cyan)" filter="url(#wf-shadow)" />
+                        <text x="787" y="196" textAnchor="middle" fill="white" fontSize="12" fontWeight="700">Submit to</text>
+                        <text x="787" y="213" textAnchor="middle" fill="white" fontSize="12" fontWeight="700">Client</text>
+
+                        {/* ⑦ Suggestion / Feedback — Hexagon (yellow) */}
+                        {/* flat-top hexagon: r=52, cx=787, cy=340 */}
+                        <polygon
+                            points="832,366 787,392 742,366 742,314 787,288 832,314"
+                            fill="url(#g-yellow)" filter="url(#wf-shadow)"
+                        />
+                        <text x="787" y="337" textAnchor="middle" fill="white" fontSize="11.5" fontWeight="700">Suggestion/</text>
+                        <text x="787" y="353" textAnchor="middle" fill="white" fontSize="11.5" fontWeight="700">Feedback</text>
+
+                        {/* ⑧ Approval — Ellipse (pink) */}
+                        <ellipse cx="787" cy="470" rx="63" ry="32" fill="url(#g-pink)" filter="url(#wf-shadow)" />
+                        <text x="787" y="474" textAnchor="middle" fill="white" fontSize="14" fontWeight="700">Approval</text>
+
+                        {/* ⑨ Identify Missing Info — Rounded rect (violet) */}
+                        <rect x="50" y="267" width="164" height="49" rx="12" fill="url(#g-violet)" filter="url(#wf-shadow)" />
+                        <text x="132" y="287" textAnchor="middle" fill="white" fontSize="12" fontWeight="700">Identify</text>
+                        <text x="132" y="304" textAnchor="middle" fill="white" fontSize="12" fontWeight="700">Missing Info</text>
+
+                        {/* ⑩ Submit to Client (bottom) — Ellipse (cyan) */}
+                        <ellipse cx="132" cy="420" rx="68" ry="32" fill="url(#g-cyan)" filter="url(#wf-shadow)" />
+                        <text x="132" y="416" textAnchor="middle" fill="white" fontSize="12" fontWeight="700">Submit to</text>
+                        <text x="132" y="432" textAnchor="middle" fill="white" fontSize="12" fontWeight="700">Client</text>
+
+                    </svg>
                 </div>
             </section>
 
-            {/* Advantages Section */}
+            {/* ── Advantages ── */}
             <section className="mc-advantages-section container">
                 <h2 className="section-title">Advantages</h2>
                 <p className="section-subtitle">Key business benefits of professional Material Coding and Cataloguing</p>
                 <div className="advantages-grid">
                     {advantages.map((advantage, index) => (
                         <div key={index} className="advantage-card">
-                            <div className="advantage-icon-box">
-                                {advantage.icon}
-                            </div>
+                            <div className="advantage-icon-box">{advantage.icon}</div>
                             <div className="advantage-content">
                                 <h3>{advantage.title}</h3>
                                 <p>{advantage.description}</p>
@@ -403,6 +355,7 @@ const MaterialCoding = () => {
                     ))}
                 </div>
             </section>
+
         </div>
     );
 };
