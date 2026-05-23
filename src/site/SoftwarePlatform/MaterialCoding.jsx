@@ -389,56 +389,119 @@ const MaterialCoding = () => {
                         {/* Connection Lines (SVG) */}
                         <svg className="mc-flowchart-svg" viewBox="0 0 1000 600" width="1000" height="600">
                             <defs>
-                                <marker id="arr-gray" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-                                    <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#cbd5e1" />
+                                <marker id="arr-dim" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+                                    <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="rgba(139,92,246,0.2)" />
                                 </marker>
-                                <marker id="arr-active" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-                                    <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill={activePath === 'exceptions' ? '#8b5cf6' : activePath === 'feedback' ? '#d97706' : '#0056b3'} />
+                                <marker id="arr-orange" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+                                    <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#ff5500" />
                                 </marker>
+                                <filter id="orange-glow">
+                                    <feGaussianBlur stdDeviation="2.5" result="blur" />
+                                    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                                </filter>
                             </defs>
 
-                            {/* Base Gray Connections */}
+                            {/* Dim base connections (inactive) */}
                             {Object.entries(connectionsData).map(([key, conn]) => {
                                 const isLinkActive = paths[activePath].connections.includes(key);
                                 return (
                                     <path
                                         key={`base-${key}`}
                                         d={conn.path}
-                                        stroke="#cbd5e1"
-                                        strokeWidth="2.5"
+                                        stroke="rgba(139,92,246,0.18)"
+                                        strokeWidth="1.5"
+                                        strokeDasharray="4 4"
                                         fill="none"
-                                        markerEnd="url(#arr-gray)"
-                                        style={{ opacity: isLinkActive ? 0.15 : 0.7 }}
+                                        markerEnd="url(#arr-dim)"
+                                        style={{ opacity: isLinkActive ? 0.1 : 1 }}
                                     />
                                 );
                             })}
 
-                            {/* Active Glowing Connections */}
+                            {/* Active Orange Connections */}
                             {Object.entries(connectionsData).map(([key, conn]) => {
                                 const isLinkActive = paths[activePath].connections.includes(key);
                                 if (!isLinkActive) return null;
                                 return (
                                     <g key={`active-group-${key}`}>
-                                        {/* Glow Layer */}
+                                        {/* Outer glow */}
                                         <path
                                             d={conn.path}
-                                            className={`connection-line-glow glow-${paths[activePath].color}`}
-                                            stroke={activePath === 'exceptions' ? '#c084fc' : activePath === 'feedback' ? '#fcd34d' : '#3b82f6'}
+                                            stroke="#ff3300"
                                             strokeWidth="5"
                                             fill="none"
+                                            opacity="0.2"
+                                            filter="url(#orange-glow)"
                                         />
-                                        {/* Core Flow Line */}
+                                        {/* Core dashed orange line */}
                                         <path
                                             d={conn.path}
-                                            className={`connection-line-flow flow-${paths[activePath].color}`}
-                                            stroke={activePath === 'exceptions' ? '#8b5cf6' : activePath === 'feedback' ? '#ea580c' : '#0056b3'}
-                                            strokeWidth="3"
+                                            className="connection-line-flow"
+                                            stroke="#ff5500"
+                                            strokeWidth="2"
                                             fill="none"
-                                            markerEnd="url(#arr-active)"
+                                            markerEnd="url(#arr-orange)"
                                         />
                                     </g>
                                 );
                             })}
+
+                            {/* Orange Junction Dots at path bends */}
+                            {paths[activePath].connections.includes('collect_to_analyze') && (
+                                <circle cx="222" cy="75" r="5" className="junction-dot" />
+                            )}
+                            {paths[activePath].connections.includes('analyze_to_identify_class') && (
+                                <circle cx="432" cy="105" r="5" className="junction-dot" />
+                            )}
+                            {paths[activePath].connections.includes('identify_class_to_freeze_templates') && (
+                                <circle cx="432" cy="230" r="5" className="junction-dot" />
+                            )}
+                            {paths[activePath].connections.includes('freeze_templates_to_populate_values') && (
+                                <circle cx="432" cy="355" r="5" className="junction-dot" />
+                            )}
+                            {paths[activePath].connections.includes('populate_values_to_submit_client_qa') && (
+                                <>
+                                    <circle cx="522" cy="460" r="5" className="junction-dot" />
+                                    <circle cx="650" cy="460" r="5" className="junction-dot" />
+                                    <circle cx="650" cy="200" r="5" className="junction-dot" />
+                                </>
+                            )}
+                            {paths[activePath].connections.includes('submit_client_qa_to_suggestion_feedback') && (
+                                <circle cx="787" cy="230" r="5" className="junction-dot" />
+                            )}
+                            {paths[activePath].connections.includes('suggestion_feedback_to_approval') && (
+                                <circle cx="787" cy="380" r="5" className="junction-dot" />
+                            )}
+                            {paths[activePath].connections.includes('suggestion_feedback_to_populate_values') && (
+                                <>
+                                    <circle cx="697" cy="340" r="5" className="junction-dot" />
+                                    <circle cx="590" cy="340" r="5" className="junction-dot" />
+                                    <circle cx="590" cy="460" r="5" className="junction-dot" />
+                                </>
+                            )}
+                            {paths[activePath].connections.includes('identify_class_to_missing_info') && (
+                                <>
+                                    <circle cx="322" cy="200" r="5" className="junction-dot" />
+                                    <circle cx="260" cy="200" r="5" className="junction-dot" />
+                                    <circle cx="260" cy="291" r="5" className="junction-dot" />
+                                </>
+                            )}
+                            {paths[activePath].connections.includes('freeze_templates_to_missing_info') && (
+                                <>
+                                    <circle cx="332" cy="325" r="5" className="junction-dot" />
+                                    <circle cx="260" cy="325" r="5" className="junction-dot" />
+                                </>
+                            )}
+                            {paths[activePath].connections.includes('missing_info_to_submit_client_exception') && (
+                                <circle cx="132" cy="321" r="5" className="junction-dot" />
+                            )}
+                            {paths[activePath].connections.includes('submit_client_exception_to_populate_values') && (
+                                <>
+                                    <circle cx="212" cy="420" r="5" className="junction-dot" />
+                                    <circle cx="280" cy="420" r="5" className="junction-dot" />
+                                    <circle cx="280" cy="460" r="5" className="junction-dot" />
+                                </>
+                            )}
                         </svg>
 
                         {/* Interactive Nodes */}
