@@ -182,6 +182,44 @@
     line-height: 1.5;
 }
 
+/* Owner Contacts */
+.owner-contacts {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    border-top: 1px solid rgba(226, 232, 240, 0.8);
+    padding-top: 24px;
+    align-items: center;
+}
+
+.owner-contact-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #475569;
+    font-size: 1.05rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.owner-contact-item:hover {
+    color: var(--primary-blue, #2563eb);
+}
+
+.owner-contact-icon {
+    color: var(--primary-blue, #2563eb);
+    width: 18px;
+    height: 18px;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.owner-contact-item:hover .owner-contact-icon {
+    transform: scale(1.1);
+}
+
 /* Responsiveness */
 @media (max-width: 768px) {
     .owners-grid {

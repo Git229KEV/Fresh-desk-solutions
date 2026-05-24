@@ -1,16 +1,20 @@
 import React from 'react';
-import { Building2, ShieldCheck, Trophy } from 'lucide-react';
+import { Building2, ShieldCheck, Trophy, Phone, Mail } from 'lucide-react';
 import './Owners.css';
 
 const Owners = () => {
     const ownersData = [
         {
             name: "Surya Jeyaraman",
-            role: "Co-Founder & Managing Director"
+            role: "Co-Founder & Managing Director",
+            phone: "+91 73589 75475",
+            email: "freshdesk.in@gmail.com"
         },
         {
             name: "Subramanian",
-            role: "Co-Founder & Director of Operations"
+            role: "Co-Founder & Director of Operations",
+            phone: "+91 73589 75475",
+            email: "freshdesk.in@gmail.com"
         }
     ];
 
@@ -35,6 +39,16 @@ const Owners = () => {
                             <div className="owner-details">
                                 <span className="owner-role">{owner.role}</span>
                                 <h2 className="owner-name">{owner.name}</h2>
+                                <div className="owner-contacts">
+                                    <a href={`tel:${owner.phone.replace(/\s+/g, '')}`} className="owner-contact-item">
+                                        <Phone className="owner-contact-icon" />
+                                        <span>{owner.phone}</span>
+                                    </a>
+                                    <a href={`mailto:${owner.email}`} className="owner-contact-item">
+                                        <Mail className="owner-contact-icon" />
+                                        <span>{owner.email}</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     ))}
