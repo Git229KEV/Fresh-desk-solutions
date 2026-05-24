@@ -24,8 +24,9 @@ const Footer = () => {
                     <div className="footer-col">
                         <h3 className="footer-col-title">Company</h3>
                         <ul className="footer-links-list">
-                            <li><a href="/clients">Our Clients</a></li>
-                            <li><a href="/about-us">About Us</a></li>
+                            <li><Link to="/about-us">About Us</Link></li>
+                            <li><Link to="/owners">Our Owners</Link></li>
+                            <li><Link to="/clients">Our Clients</Link></li>
                         </ul>
                     </div>
 

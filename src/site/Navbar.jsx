@@ -57,6 +57,13 @@ const MegaDropdown = ({ title, description, links }) => (
 const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
 
+    // Company Links
+    const companyLinks = [
+        { to: "/about-us", label: "About Us" },
+        { to: "/owners", label: "Our Owners" },
+        { to: "/clients", label: "Our Clients" }
+    ];
+
     // Solutions Links
     const solutionLinks = [
         { to: "/solutions/facility-property-management", label: "Facility & Property Management" },
@@ -106,6 +113,21 @@ const Navbar = () => {
                 </button>
 
                 <ul className={`navbar-links ${menuOpen ? 'active' : ''}`}>
+                    {/* Company Mega Menu */}
+                    <li className="dropdown-item">
+                        <span className="nav-link">Company <ChevronDown /></span>
+                        <div className="mobile-dropdown-links">
+                            {companyLinks.map((link, idx) => (
+                                <Link key={idx} to={link.to} onClick={closeMenu}>{link.label}</Link>
+                            ))}
+                        </div>
+                        <MegaDropdown
+                            title="Our Company"
+                            description="Learn more about our philosophy, our valued clients, and the leadership team driving our operations."
+                            links={companyLinks}
+                        />
+                    </li>
+
                     {/* Target Mega Menu */}
                     <li className="dropdown-item">
                         <span className="nav-link">Our Target <ChevronDown /></span>

@@ -1,0 +1,309 @@
+/* Owners Page CSS */
+.owners-page {
+    font-family: 'Outfit', 'Inter', sans-serif;
+    color: #334155;
+    background-color: #f8fafc;
+    overflow-x: hidden;
+}
+
+/* Hero Section */
+.owners-hero {
+    position: relative;
+    padding: 120px 0 80px;
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+    color: white;
+    text-align: center;
+}
+
+.owners-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.owners-hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.owners-hero-tag {
+    display: inline-block;
+    color: #60a5fa;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.owners-hero-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+}
+
+.owners-hero-subtitle {
+    font-size: 1.2rem;
+    color: #94a3b8;
+    line-height: 1.6;
+    font-weight: 300;
+}
+
+/* Profiles Section */
+.owners-section {
+    padding: 80px 0;
+}
+
+.owners-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 48px;
+}
+
+.owner-card {
+    background: white;
+    border-radius: 24px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+.owner-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 40px -15px rgba(15, 23, 42, 0.1);
+}
+
+.owner-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    background-color: #f1f5f9;
+}
+
+.owner-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.owner-card:hover .owner-image {
+    transform: scale(1.05);
+}
+
+.owner-highlight-badge {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(8px);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 9999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.badge-icon {
+    color: #60a5fa;
+}
+
+.owner-details {
+    padding: 40px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.owner-role {
+    color: var(--primary-blue, #2563eb);
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    display: inline-block;
+}
+
+.owner-name {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
+}
+
+.owner-bio {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #475569;
+    margin-bottom: 30px;
+    flex-grow: 1;
+}
+
+/* Contact Info */
+.owner-contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 24px;
+}
+
+.contact-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #64748b;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.25s ease, transform 0.25s ease;
+    width: fit-content;
+}
+
+.contact-link svg {
+    color: #94a3b8;
+    transition: color 0.25s ease;
+}
+
+.contact-link:hover {
+    color: #0f172a;
+    transform: translateX(4px);
+}
+
+.contact-link:hover svg {
+    color: var(--primary-blue, #2563eb);
+}
+
+.contact-link.linkedin-link:hover {
+    color: #0077b5;
+}
+
+.contact-link.linkedin-link:hover svg {
+    color: #0077b5;
+}
+
+/* Shared Vision Section */
+.shared-vision {
+    padding-bottom: 100px;
+}
+
+.vision-glass-panel {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 32px;
+    padding: 60px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.04);
+    text-align: center;
+}
+
+.vision-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 20px;
+}
+
+.vision-text {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: #475569;
+    max-width: 900px;
+    margin: 0 auto 48px;
+    font-style: italic;
+    font-weight: 300;
+}
+
+.vision-pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    border-top: 1px solid rgba(226, 232, 240, 0.8);
+    padding-top: 48px;
+}
+
+.pillar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.pillar-icon {
+    color: var(--primary-blue, #2563eb);
+    width: 48px;
+    height: 48px;
+    margin-bottom: 16px;
+    stroke-width: 1.5;
+}
+
+.pillar h4 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 8px;
+}
+
+.pillar p {
+    font-size: 0.95rem;
+    color: #64748b;
+    line-height: 1.5;
+}
+
+/* Responsiveness */
+@media (max-width: 992px) {
+    .owners-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .owner-image-wrapper {
+        height: 350px;
+    }
+
+    .vision-pillars {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .vision-glass-panel {
+        padding: 40px 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .owners-hero-title {
+        font-size: 2.5rem;
+    }
+
+    .owners-hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .owner-details {
+        padding: 30px 20px;
+    }
+
+    .owner-name {
+        font-size: 1.85rem;
+    }
+}

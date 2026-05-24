@@ -212,6 +212,7 @@ import clientsHero from './assets/clients/clients_header.png';
 import Footer from './site/Footer';
 
 import AboutUs from './site/AboutUs';
+import Owners from './site/Owners';
 import TargetPage from './site/TargetPage';
 import PrivacyPolicy from './site/PrivacyPolicy';
 import TermsOfService from './site/TermsOfService';
@@ -228,6 +229,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/owners" element={<Owners />} />
           <Route path="/clients" element={<SolutionPage
             title="Our Valued Clients"
             image={clientsHero}
