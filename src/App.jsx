@@ -220,10 +220,12 @@ import MaterialCoding from './site/SoftwarePlatform/MaterialCoding';
 import BOM from './site/SoftwarePlatform/BOM';
 import AssetManagementSoftware from './site/SoftwarePlatform/AssetManagementSoftware';
 import PreventiveMaintenance from './site/SoftwarePlatform/PreventiveMaintenance';
+import ScrollToTop from './site/ScrollToTop';
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <div className="app">
         <Navbar />
         <Routes>
